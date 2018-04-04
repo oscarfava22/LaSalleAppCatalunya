@@ -8,13 +8,16 @@
     <string name="email">Correu Electronic</string>
     <string name="password">Contrassenya</string>
     <string name="confirmPassword">Confirmar Contrassenya</string>
-    <string name="register">Registrarse</string>
+    <string name="register">Registrar-se</string>
     <string name="errorEmail">Escriu el email correctament,siusplau</string>
     <string name="errorName">Escriu el teu nom</string>
     <string name="errorSurname">Escriu el teu cognom</string>
     <string name="errorPass">Escriu la teva contrassenya</string>
     <string name="errorConfirmPass">La contrasenya no coincideix</string>
     <string name="errorUsername">Escriu el nom d\'usuari</string>
+    <string name="loginAdmin">Login per a Adminstradors</string>
+    <string name="usernameOrEmail">Nom d\'usuari o Email</string>
+    <string name="login">INICIAR SESSIÓ</string>
 
 
 </resources>

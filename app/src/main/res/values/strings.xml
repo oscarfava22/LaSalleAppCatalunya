@@ -15,5 +15,14 @@
     <string name="errorPass">Escribe tu contraseña</string>
     <string name="errorConfirmPass">La contraseña no coincide</string>
     <string name="errorUsername">Escribe el nombre de usuario</string>
+    <string name="loginAdmin">Login para Administradores</string>
+    <string name="usernameOrEmail">Nombre de usuario o Email</string>
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="or">O</string>
+    <string name="loginFacebook">INICIAR SESIÓN CON FACEBOOK</string>
+    <string name="loginTwitter">INICIAR SESIÓN CON TWITTER</string>
+    <string name="loginGoogle">INICIAR SESIÓN CON GOOGLE</string>
+    <string name="facebook_app_id">948445248659697</string>
+    <string name="fb_login_protocol_scheme">fb948445248659697</string>
 
 </resources>
