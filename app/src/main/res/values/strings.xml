@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LaSalleCataluñaApp</string>
+    <string name="registerAdmin">Registrar un nuevo usuario</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="realName">Primer Apellido</string>
+    <string name="surname">Segundo Apellido</string>
+    <string name="password">Contraseña</string>
+    <string name="confirmPassword">Confirmar Contraseña</string>
+    <string name="register">Registrarse</string>
+    <string name="email">Correo Electronico</string>
+    <string name="errorEmail">Escribe el email correctamente,porfavor</string>
+    <string name="errorName">Escribe tu nombre</string>
+    <string name="errorSurname">Escribe tu apellido</string>
+    <string name="errorPass">Escribe tu contraseña</string>
+    <string name="errorConfirmPass">La contraseña no coincide</string>
+    <string name="errorUsername">Escribe el nombre de usuario</string>
+
+</resources>

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.practica2.projectes2.lasalle.lasalleappcatalunya.RegisterNewAdmin"
-    android:orientation="vertical">
-
+ >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <EditText
         android:id="@+id/nomUsuari"
-        android:text="@string/username"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -26,11 +32,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textPersonName"
-        android:text="@string/realName" />
+        android:hint="@string/realName" />
 
     <EditText
         android:id="@+id/CognomReal"
-        android:text="@string/surname"
+        android:hint="@string/surname"
+        android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -47,7 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textEmailAddress"
-        android:text="@string/email" />
+        android:hint="@string/email" />
 
     <EditText
         android:id="@+id/contrassenya"
@@ -58,7 +65,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textPassword"
-        android:text="@string/password" />
+        android:hint="@string/password" />
 
     <EditText
         android:id="@+id/confirmContrassenya"
@@ -69,11 +76,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textPassword"
-        android:text="@string/confirmPassword" />
+        android:hint="@string/confirmPassword" />
 
     <Button
         android:id="@+id/buttonRegister"
-        android:text="@string/register"
+        android:onClick="onClickButtonRegister"
+        android:hint="@string/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -81,3 +89,5 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"/>
 </LinearLayout>
+
+</ScrollView>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LaSalleCatalunyaApp</string>
     <string name="registerAdmin">Registrar un nou usuari</string>
@@ -8,5 +9,12 @@
     <string name="password">Contrassenya</string>
     <string name="confirmPassword">Confirmar Contrassenya</string>
     <string name="register">Registrarse</string>
+    <string name="errorEmail">Escriu el email correctament,siusplau</string>
+    <string name="errorName">Escriu el teu nom</string>
+    <string name="errorSurname">Escriu el teu cognom</string>
+    <string name="errorPass">Escriu la teva contrassenya</string>
+    <string name="errorConfirmPass">La contrasenya no coincideix</string>
+    <string name="errorUsername">Escriu el nom d\'usuari</string>
+
 
 </resources>
