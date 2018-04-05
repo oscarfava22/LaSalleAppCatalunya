@@ -15,13 +15,21 @@
             android:name=".RegisterNewAdmin"
             android:label="@string/registerAdmin">
         </activity>
-        <activity android:name=".LoginAdminActivity"
-            android:label="@string/loginAdmin">
+
+        <activity
+            android:name=".CreateNewCenter"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginAdminActivity"
+            android:label="@string/loginAdmin">
+
         </activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

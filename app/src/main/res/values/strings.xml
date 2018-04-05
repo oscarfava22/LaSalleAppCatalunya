@@ -24,5 +24,13 @@
     <string name="loginGoogle">INICIAR SESIÓN CON GOOGLE</string>
     <string name="facebook_app_id">948445248659697</string>
     <string name="fb_login_protocol_scheme">fb948445248659697</string>
+    <string name="orderASC">ordenar alfabeticamente</string>
+    <string name="logout">logout</string>
+    <string name="TitleDialogDelete">Quieres borrar el centro?</string>
+    <string name="AcceptToDelete">Borrar </string>
+    <string name="Delete">Borrar</string>
+    <string name="Cancel">Cancelar</string>
+
+
 
 </resources>

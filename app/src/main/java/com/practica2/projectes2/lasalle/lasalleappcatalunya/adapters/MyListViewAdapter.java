@@ -2,17 +2,13 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
@@ -22,13 +18,38 @@ public class MyListViewAdapter extends BaseAdapter implements AdapterView.OnItem
     private ArrayList<CentreEscolar> data;
     private Context context;
     private Toolbar toolbar;
-    private ListView listView;
 
-    public MyListViewAdapter(ArrayList<CentreEscolar> data, Context context, Toolbar toolbar, ListView listView) {
+    public MyListViewAdapter(ArrayList<CentreEscolar> data, Context context, Toolbar toolbar) {
         this.data = data;
-        this.listView = listView;
         this.toolbar = toolbar;
         this.context = context;
+
+        /*
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // Row is swiped from recycler view
+                // remove it from adapter
+            }
+
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                // view the background view
+            }
+        };
+
+        // attaching the touch helper to recycler view
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+         */
+
     }
 
 
@@ -72,39 +93,6 @@ public class MyListViewAdapter extends BaseAdapter implements AdapterView.OnItem
         return view;
     }
 
-    /*
-     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()){
-          case MotionEvent.ACTION_MOVE:
-              //creating variables
-              float mDownx = event.getX();
-              boolean mSwiping = false;
-              int mSwipeSlop = -1;
-
-
-              float x = event.getX() + v.getTranslationX();
-              float deltaX = x - mDownx;
-              float deltaXAbs = Math.abs(deltaX);
-              if(!mSwiping){
-                  if(deltaXAbs > mSwipeSlop){
-                      mSwiping = true;
-                      listView.requestDisallowInterceptTouchEvent(true);
-                      //show background, dont know how
-                  }
-              }
-              if (mSwiping){
-                  v.setTranslationX((x - mDownx));
-                  v.setAlpha(1 - deltaXAbs / v.getWidth());
-              }
-              break;
-
-
-        }
-        return true;
-    }
-
-     */
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
