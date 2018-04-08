@@ -5,19 +5,44 @@
     <string name="username">nom d\'usuari</string>
     <string name="realName">Primer cognom</string>
     <string name="surname">Segon cognom</string>
-    <string name="email">Correu Electronic</string>
+    <string name="email">Correu Electrònic</string>
     <string name="password">Contrassenya</string>
     <string name="confirmPassword">Confirmar Contrassenya</string>
     <string name="register">Registrar-se</string>
-    <string name="errorEmail">Escriu el email correctament,siusplau</string>
+    <string name="errorEmail">Escriu el email correctament,si us plau</string>
     <string name="errorName">Escriu el teu nom</string>
     <string name="errorSurname">Escriu el teu cognom</string>
     <string name="errorPass">Escriu la teva contrassenya</string>
     <string name="errorConfirmPass">La contrasenya no coincideix</string>
     <string name="errorUsername">Escriu el nom d\'usuari</string>
-    <string name="loginAdmin">Login per a Adminstradors</string>
+    <string name="loginAdmin">Login per Adminstradors</string>
     <string name="usernameOrEmail">Nom d\'usuari o Email</string>
     <string name="login">INICIAR SESSIÓ</string>
+
+    <string name="nom_escola">Nom escola</string>
+    <string name="adreça_test">Carrer Test, n 1024, 100110 BCN</string>
+    <string name="tipus_estudis_test">Només informàtica a modo test</string>
+    <string name="titol_descripcio">Descripció</string>
+    <string name="title_add_new_centre">Afegir una nova escola</string>
+    <string name="school_name_hint">Nom de l\'escola</string>
+    <string name="school_address_hint">Adreça de l\'escola</string>
+    <string name="title_provincia">Província de l\'escola</string>
+
+    <string-array name="provincies_array">
+        <item>Barcelona</item>
+        <item>Girona</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
+    </string-array>
+
+    <string name="tipus_estudis_hint">Tipus d\'estudis</string>
+    <string name="button_create_school">CREA ESCOLA</string>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
 
 
 </resources>
