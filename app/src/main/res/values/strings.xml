@@ -3,8 +3,8 @@
     <string name="app_name">LaSalleCataluñaApp</string>
     <string name="registerAdmin">Registrar un nuevo usuario</string>
     <string name="username">Nombre de usuario</string>
-    <string name="realName">Primer Apellido</string>
-    <string name="surname">Segundo Apellido</string>
+    <string name="realName">Nombre</string>
+    <string name="surname">Apellidos</string>
     <string name="password">Contraseña</string>
     <string name="confirmPassword">Confirmar Contraseña</string>
     <string name="register">Registrarse</string>
@@ -22,8 +22,8 @@
     <string name="loginFacebook">INICIAR SESIÓN CON FACEBOOK</string>
     <string name="loginTwitter">INICIAR SESIÓN CON TWITTER</string>
     <string name="loginGoogle">INICIAR SESIÓN CON GOOGLE</string>
-    <string name="facebook_app_id">948445248659697</string>
-    <string name="fb_login_protocol_scheme">fb948445248659697</string>
+    <string name="facebook_app_id">195448987919270</string>
+    <string name="fb_login_protocol_scheme">fb195448987919270</string>
     <string name="orderASC">ordenar alfabeticamente</string>
     <string name="logout">logout</string>
     <string name="TitleDialogDelete">Quieres borrar el centro?</string>
@@ -54,8 +54,10 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-
-
+    <string name="login_error">Incorrect username or password.</string>
+    <string name="cancel_error">Login canceled.</string>
+    <string name="login_dialog_error">Something failed at the start of session. Please, try again.</string>
+    <string name="register_error">This username already exists. Please, choose another one.</string>
 
 
 </resources>

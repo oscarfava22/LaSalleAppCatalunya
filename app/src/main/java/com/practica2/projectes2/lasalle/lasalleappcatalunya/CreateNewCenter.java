@@ -2,9 +2,8 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.widget.ListView;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,7 +37,6 @@ public class CreateNewCenter extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         this.toolbar = toolbar;
         setSupportActionBar(toolbar); //error
-
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
