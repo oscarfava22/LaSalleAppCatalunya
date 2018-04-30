@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.practica2.projectes2.lasalle.lasalleappcatalunya.RegisterNewAdmin"
+    tools:context="com.practica2.projectes2.lasalle.lasalleappcatalunya.activities.RegisterNewAdmin"
  >
 <LinearLayout
     android:orientation="vertical"

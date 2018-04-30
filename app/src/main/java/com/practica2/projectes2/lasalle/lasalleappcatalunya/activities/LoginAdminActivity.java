@@ -1,4 +1,4 @@
-package com.practica2.projectes2.lasalle.lasalleappcatalunya;
+package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.User;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.UsersDB;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 
 import java.util.Arrays;
 

@@ -34,7 +34,6 @@ public class CentreEscolar implements Comparable,Parcelable{
         nomEscola = in.readString();
         adresaEscola = in.readString();
         estudisImpartits = in.readString();
-
     }
 
     public static final Parcelable.Creator<CentreEscolar> CREATOR = new Parcelable.Creator<CentreEscolar>() {

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LaSalleCataluñaApp</string>
+    <string name="All">Todos</string>
+    <string name="IPE">Infantiles, Primaria i ESO</string>
+    <string name="BFU">Batxillerato, Formacion Professional i Universitarios</string>
     <string name="registerAdmin">Registrar un nuevo usuario</string>
     <string name="username">Nombre de usuario</string>
     <string name="realName">Nombre</string>
@@ -27,9 +30,12 @@
     <string name="orderASC">ordenar alfabeticamente</string>
     <string name="logout">logout</string>
     <string name="TitleDialogDelete">Quieres borrar el centro?</string>
+    <string name="TitleDialogInsert">Quieres añadir un nuevo centro?</string>
     <string name="AcceptToDelete">Borrar </string>
     <string name="Delete">Borrar</string>
     <string name="Cancel">Cancelar</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="deleteSure">Seguro que quieres borrar el centro?</string>
 
     <string name="nom_escola">Nombre escuela</string>
     <string name="adreça_test">Calle Test, n 1024, 100110 BCN</string>
@@ -58,6 +64,4 @@
     <string name="cancel_error">Login canceled.</string>
     <string name="login_dialog_error">Something failed at the start of session. Please, try again.</string>
     <string name="register_error">This username already exists. Please, choose another one.</string>
-
-
 </resources>

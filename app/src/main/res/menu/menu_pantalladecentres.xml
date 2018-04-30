@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/accedirLogin"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_name"
+        android:title="@string/orderASC"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/pantallaMapa"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_map_button"
+        android:title="@string/logout"
+        app:showAsAction="never" />
+</menu>

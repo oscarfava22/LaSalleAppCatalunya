@@ -1,4 +1,4 @@
-package com.practica2.projectes2.lasalle.lasalleappcatalunya;
+package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.User;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.UsersDB;
+
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 
 public class RegisterNewAdmin extends AppCompatActivity {
 

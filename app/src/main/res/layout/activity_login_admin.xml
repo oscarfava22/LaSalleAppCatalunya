@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
-    tools:context="com.practica2.projectes2.lasalle.lasalleappcatalunya.LoginAdminActivity">
+    tools:context="com.practica2.projectes2.lasalle.lasalleappcatalunya.activities.LoginAdminActivity">
 
     <EditText
         android:id="@+id/login_id"
