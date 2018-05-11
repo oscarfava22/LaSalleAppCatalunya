@@ -15,29 +15,17 @@
             android:name=".activities.RegisterNewAdmin"
             android:label="@string/registerAdmin" />
         <activity
-            android:name=".CreateNewCenter"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".activities.CreateNewCenter"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="">
         </activity>
 
-        <activity android:name=".LoginAdminActivity"
-            android:label="@string/loginAdmin">
-            android:name=".activities.CreateNewCenter"
-            android:label=""
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        </activity>
         <activity
             android:name=".activities.LoginAdminActivity"
-            android:label="@string/loginAdmin" />
-
-        <meta-data
+            android:label="@string/loginAdmin"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+          <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
@@ -58,7 +46,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.PantallaDeCentres"></activity>
+        <activity
+            android:name=".activities.PantallaDeCentres"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

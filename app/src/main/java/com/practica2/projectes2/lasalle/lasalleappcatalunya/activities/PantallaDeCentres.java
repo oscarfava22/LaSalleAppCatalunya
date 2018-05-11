@@ -8,20 +8,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.TabAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.fragment.ListViewFragment;
-import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("");
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
         createTabs();
@@ -34,12 +36,21 @@ public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
 
         MenuInflater inflater = getMenuInflater();
-
         inflater.inflate(R.menu.menu_pantalladecentres, menu);
 
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner = (Spinner) item.getActionView();
+
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter();
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.provincies_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(spinnerAdapter);
         return true;
     }
 
@@ -55,6 +66,7 @@ public class PantallaDeCentres extends AppCompatActivity {
             //TODO go pantalla mapa
             return true;
         }
+        //TODO cuando pulsa una provincia...
         return super.onOptionsItemSelected(item);
     }
 
@@ -65,6 +77,7 @@ public class PantallaDeCentres extends AppCompatActivity {
         ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
         entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.All)));
         //TODO cargar dadas en todos los fragmentos (las listas)
+        //TODO al listview deberias pasar el array de info o algo
         entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.IPE)));
         entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.BFU)));
 

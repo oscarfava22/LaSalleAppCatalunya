@@ -4,14 +4,21 @@
 
     <item
         android:id="@+id/accedirLogin"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:icon="@drawable/ic_action_name"
         android:title="@string/orderASC"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/pantallaMapa"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:icon="@drawable/ic_map_button"
         android:title="@string/logout"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/spinner"
+        android:orderInCategory="1"
+        android:title=""
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="ifRoom"
+        />
 </menu>

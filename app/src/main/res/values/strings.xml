@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">LaSalleCataluñaApp</string>
     <string name="All">Todos</string>
-    <string name="IPE">Infantiles, Primaria i ESO</string>
-    <string name="BFU">Batxillerato, Formacion Professional i Universitarios</string>
+    <string name="IPE">ESCUELAS</string>
+    <string name="BFU">OTROS</string>
     <string name="registerAdmin">Registrar un nuevo usuario</string>
     <string name="username">Nombre de usuario</string>
     <string name="realName">Nombre</string>

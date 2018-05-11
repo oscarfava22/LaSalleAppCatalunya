@@ -20,6 +20,12 @@ public class ListViewFragment extends Fragment{
     private ArrayList<CentreEscolar> cityArrayList;
     private MyListViewAdapterWithOnItemClick adapter;
 
+    public ListViewFragment() {
+    }
+
+    public void setDataArray(ArrayList<CentreEscolar> cityArrayList) {
+        this.cityArrayList = cityArrayList;
+    }
 
     @Nullable
     @Override
@@ -28,8 +34,7 @@ public class ListViewFragment extends Fragment{
 
         listView = view.findViewById(R.id.listview);
 
-        // Creamos el array con el modelo de datos.
-        //cityArrayList = new WeatherManagerFromFile().getRecipesFromFile(getActivity());
+        cityArrayList = new ArrayList<>();
 
         adapter = new MyListViewAdapterWithOnItemClick(getActivity(), cityArrayList);
 
