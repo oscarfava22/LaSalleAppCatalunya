@@ -2,8 +2,11 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -13,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -26,6 +30,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
 
 import java.util.ArrayList;
@@ -40,10 +45,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private List<Marker> centersMarkers;
     private int numCenters = 0;
 
+    SchoolsRepository schoolsRepo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        schoolsRepo = new SchoolsAPI(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,9 +120,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 centersMarkers.add(marker);
             }
         } else { //Sol·licitar centres al Web Service.
-            SchoolsAPI schoolsAPI = new SchoolsAPI();
-            centers = schoolsAPI.getSchools();
-            numCenters = centers == null ? 0: centers.size();
+            //SchoolsAPI schoolsAPI = new SchoolsAPI();
+            //centers = schoolsAPI.getSchools();
+            //numCenters = centers == null ? 0: centers.size();
+            new AsyncRequest(this).execute();
         }
     }
 
@@ -152,5 +162,44 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         l.setVisibility(View.VISIBLE);
         return false; //False to occur the default behaviour.
     }
+
+    private class AsyncRequest extends AsyncTask<String, Void, List<CentreEscolar>> {
+
+        private Context context;
+        private ProgressDialog progressDialog;
+
+        protected AsyncRequest(Context context) {
+            this.context = context;
+            progressDialog = new ProgressDialog(context);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("HARDCODED");
+            progressDialog.show();
+        }
+
+        @Override
+        protected List<CentreEscolar> doInBackground(String... params) {
+            return schoolsRepo.getSchools();
+        }
+
+        @Override
+        protected void onPostExecute(List<CentreEscolar> aList) {
+            super.onPostExecute(aList);
+
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+
+            /*
+            adapter = new MoviesListViewAdapter(aList, context);
+            ListView listView = (ListView) findViewById(R.id.moviesListView);
+            listView.setAdapter(adapter);
+            */
+        }
+    }
+
 
 }
