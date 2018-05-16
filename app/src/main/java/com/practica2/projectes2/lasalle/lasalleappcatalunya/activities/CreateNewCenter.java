@@ -2,6 +2,7 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -60,6 +61,9 @@ public class CreateNewCenter extends AppCompatActivity {
                             //data.add(new CentreEscolar("nomescola","adresa","infantil"));
                             // data.remove(position);
                             adapter.notifyDataSetChanged();
+
+                            Intent intent = new Intent(CreateNewCenter.this, ActivityAddCentre.class);
+                            startActivity(intent);
                             }
                     });
             builder.setNegativeButton(context.getString(R.string.Cancel), null);

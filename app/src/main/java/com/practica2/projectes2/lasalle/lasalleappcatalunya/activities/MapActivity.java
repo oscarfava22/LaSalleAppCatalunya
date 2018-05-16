@@ -40,7 +40,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private static final int PERMISSIONS_REQUEST_ACCESS_LOCATION = 12345;
     private GoogleMap mMap;
-    private ArrayList<CentreEscolar> centers;
+    private List<CentreEscolar> centers;
     private ArrayList<LatLng> coordinates;
     private List<Marker> centersMarkers;
     private int numCenters = 0;
@@ -192,7 +192,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-
+            centers = aList;
             /*
             adapter = new MoviesListViewAdapter(aList, context);
             ListView listView = (ListView) findViewById(R.id.moviesListView);
