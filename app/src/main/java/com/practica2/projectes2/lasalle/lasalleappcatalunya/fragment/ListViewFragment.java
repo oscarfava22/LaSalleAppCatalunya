@@ -17,14 +17,39 @@ import java.util.ArrayList;
 public class ListViewFragment extends Fragment{
     private ListView listView;
     private String tipus; //cargar solo los elementos deseados
-    private ArrayList<CentreEscolar> cityArrayList;
+    private ArrayList<CentreEscolar> cityAllArrayList;
+    private ArrayList<CentreEscolar> filteredArraylist;
     private MyListViewAdapterWithOnItemClick adapter;
+    private ArrayList<String> options; //conte totes les opcions de l'array
 
     public ListViewFragment() {
+        options = new ArrayList<>();
+        options.add("Barcelona");
+        options.add("Girona");
+        options.add("Lleida");
+        options.add("Tarragona");
     }
 
     public void setDataArray(ArrayList<CentreEscolar> cityArrayList) {
-        this.cityArrayList = cityArrayList;
+        this.filteredArraylist = cityArrayList;
+        if(adapter != null){
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setFilteredListView(int option){ //0 = Barcelona,etc.
+        filteredArraylist.clear();
+        for (CentreEscolar centreEscolar: cityAllArrayList) {
+            if(centreEscolar.getProvincia().equals(options.get(option))){
+                filteredArraylist.add(centreEscolar);
+            }
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        adapter.notifyDataSetChanged();
     }
 
     @Nullable
@@ -34,9 +59,9 @@ public class ListViewFragment extends Fragment{
 
         listView = view.findViewById(R.id.listview);
 
-        cityArrayList = new ArrayList<>();
+        filteredArraylist = new ArrayList<>();
 
-        adapter = new MyListViewAdapterWithOnItemClick(getActivity(), cityArrayList);
+        adapter = new MyListViewAdapterWithOnItemClick(getActivity(), filteredArraylist);
 
         listView.setAdapter(adapter);
 

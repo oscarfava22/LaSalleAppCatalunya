@@ -19,6 +19,8 @@ public class CentreEscolar implements Comparable,Parcelable{
     private String descripcio;
     private int id;
     private String provincia;
+    private double latitude;
+    private double longitude;
 
     public void setEsInfantil(boolean esInfantil) {
         this.esInfantil = esInfantil;
@@ -54,6 +56,22 @@ public class CentreEscolar implements Comparable,Parcelable{
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public CentreEscolar() {

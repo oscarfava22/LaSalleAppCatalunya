@@ -1,6 +1,9 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
@@ -10,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -34,6 +38,11 @@ public class SchoolsAPI implements SchoolsRepository {
     private static final String DESC = "description";
     private static final String ID = "id";
     private static final String PROVINCIA = "province";
+    private Context context;
+
+    public SchoolsAPI(Context context) {
+        this.context = context;
+    }
 
     @Override
     public ArrayList<CentreEscolar> getSchools() {
@@ -73,6 +82,23 @@ public class SchoolsAPI implements SchoolsRepository {
     @Override
     public String deleteSchool(int schoolId) {
         return null;
+    }
+
+    public void establirLocation(CentreEscolar centreEscolar){
+        Geocoder geocoder = new Geocoder(context);
+        try {
+            Address a = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1).get(0);
+            if (a == null){
+                centreEscolar.setLatitude(0);
+                centreEscolar.setLongitude(0);
+            }else {
+                centreEscolar.setLatitude(a.getLatitude());
+                centreEscolar.setLongitude(a.getLongitude());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

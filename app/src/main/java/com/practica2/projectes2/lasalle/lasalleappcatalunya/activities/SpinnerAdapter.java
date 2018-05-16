@@ -8,9 +8,16 @@ public class SpinnerAdapter implements AdapterView.OnItemSelectedListener{
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (position){
-            case 0:
+            case 0://Barcelona
+                break;
+            case 1://Girona
+                break;
+            case 2://Lleida
+                break;
+            case 3://Tarragona
                 break;
         }
+        //TODO avisar totes les tabs del canvi
     }
 
     @Override

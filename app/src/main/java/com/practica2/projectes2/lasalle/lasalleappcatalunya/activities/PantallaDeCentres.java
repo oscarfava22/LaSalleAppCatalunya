@@ -15,10 +15,15 @@ import android.widget.Spinner;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.TabAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.fragment.ListViewFragment;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
 import java.util.ArrayList;
 
 public class PantallaDeCentres extends AppCompatActivity {
+
+    private ListViewFragment tots;
+    private ListViewFragment escoles;
+    private ListViewFragment altres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +78,27 @@ public class PantallaDeCentres extends AppCompatActivity {
     private void createTabs(){
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.viewPager);
+        //creating the arrays to be registered in the tabEntry
+        tots = new ListViewFragment();
+        altres = new ListViewFragment();
+        escoles = new ListViewFragment();
 
-        ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
-        entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.All)));
-        //TODO cargar dadas en todos los fragmentos (las listas)
+        /* No puedes poner las arrays porque no esta la vista creada.
+         //TODO temporal array
+        ArrayList<CentreEscolar> centreEscolarsTemporal = new ArrayList<>();
+        centreEscolarsTemporal.add(new CentreEscolar("aa","aa","bb","bb"));
         //TODO al listview deberias pasar el array de info o algo
-        entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.IPE)));
-        entries.add(new TabAdapter.TabEntry(new ListViewFragment(), getString(R.string.BFU)));
+        tots.setDataArray(centreEscolarsTemporal);
+        altres.setDataArray(centreEscolarsTemporal);
+        escoles.setDataArray(centreEscolarsTemporal);
+         */
+
+        //creating all the entries
+        ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
+        entries.add(new TabAdapter.TabEntry(tots, getString(R.string.All)));
+        //TODO cargar dadas en todos los fragmentos (las listas)
+        entries.add(new TabAdapter.TabEntry(escoles, getString(R.string.IPE)));
+        entries.add(new TabAdapter.TabEntry(altres, getString(R.string.BFU)));
 
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager(), entries);
         viewPager.setAdapter(adapter);
