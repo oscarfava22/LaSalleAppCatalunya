@@ -65,6 +65,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             //Recuperar coordinadas dels centres.
             coordinates = savedInstanceState.getParcelableArrayList("coordinates");
             numCenters = savedInstanceState.getInt("numCenters");
+        } else {
+            centersMarkers = new ArrayList<>();
         }
 
     }
@@ -193,6 +195,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 progressDialog.dismiss();
             }
             centers = aList;
+            numCenters = aList.size();
+            for (int i = 0; i < centers.size(); i++) {
+                schoolsRepo.establirLocation(centers.get(i));
+            }
+            for (int i = 0; i < centers.size(); i++) {
+                //TODO: assign color depending on the type of the center
+                Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                marker.setTag(i);
+                centersMarkers.add(marker);
+            }
             /*
             adapter = new MoviesListViewAdapter(aList, context);
             ListView listView = (ListView) findViewById(R.id.moviesListView);

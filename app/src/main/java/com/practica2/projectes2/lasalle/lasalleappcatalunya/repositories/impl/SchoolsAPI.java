@@ -84,6 +84,7 @@ public class SchoolsAPI implements SchoolsRepository {
         return null;
     }
 
+    @Override
     public void establirLocation(CentreEscolar centreEscolar){
         Geocoder geocoder = new Geocoder(context);
         try {

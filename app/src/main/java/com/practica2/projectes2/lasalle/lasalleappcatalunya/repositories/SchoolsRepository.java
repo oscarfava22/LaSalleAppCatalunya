@@ -12,4 +12,5 @@ public interface SchoolsRepository {
     ArrayList<CentreEscolar> getSchools();
     String addSchool(String school, String address, String province, String[] type, String description);
     String deleteSchool(int schoolId);
+    public void establirLocation(CentreEscolar centreEscolar);
 }
