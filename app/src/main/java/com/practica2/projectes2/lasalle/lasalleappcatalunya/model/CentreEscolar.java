@@ -6,16 +6,93 @@ import android.support.annotation.NonNull;
 
 import java.util.Comparator;
 
-public class CentreEscolar implements Comparable,Parcelable {
+public class CentreEscolar implements Comparable,Parcelable{
 
     private String nomEscola;
     private String adresaEscola;
-    private String estudisImpartits;
+    private boolean esInfantil;
+    private boolean esPrimaria;
+    private boolean esESO;
+    private boolean esBatx;
+    private boolean esFP;
+    private boolean esUni;
+    private String descripcio;
+    private int id;
+    private String provincia;
 
-    public CentreEscolar(String nomEscola, String adresaEscola, String estudisImpartits) {
-        this.nomEscola = nomEscola;
-        this.adresaEscola = adresaEscola;
-        this.estudisImpartits = estudisImpartits;
+    public void setEsInfantil(boolean esInfantil) {
+        this.esInfantil = esInfantil;
+    }
+
+    public void setEsPrimaria(boolean esPrimaria) {
+        this.esPrimaria = esPrimaria;
+    }
+
+    public void setEsESO(boolean esESO) {
+        this.esESO = esESO;
+    }
+
+    public void setEsBatx(boolean esBatx) {
+        this.esBatx = esBatx;
+    }
+
+    public void setEsFP(boolean esFP) {
+        this.esFP = esFP;
+    }
+
+    public void setEsUni(boolean esUni) {
+        this.esUni = esUni;
+    }
+
+    public void setDescripcio(String descripcio) {
+        this.descripcio = descripcio;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public CentreEscolar() {
+    }
+
+    public boolean isEsInfantil() {
+        return esInfantil;
+    }
+
+    public boolean isEsPrimaria() {
+        return esPrimaria;
+    }
+
+    public boolean isEsESO() {
+        return esESO;
+    }
+
+    public boolean isEsBatx() {
+        return esBatx;
+    }
+
+    public boolean isEsFP() {
+        return esFP;
+    }
+
+    public boolean isEsUni() {
+        return esUni;
+    }
+
+    public String getDescripcio() {
+        return descripcio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getProvincia() {
+        return provincia;
     }
 
     @Override
@@ -27,13 +104,12 @@ public class CentreEscolar implements Comparable,Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nomEscola);
         dest.writeString(adresaEscola);
-        dest.writeString(estudisImpartits);
     }
 
     private CentreEscolar(Parcel in) {
         nomEscola = in.readString();
         adresaEscola = in.readString();
-        estudisImpartits = in.readString();
+
     }
 
     public static final Parcelable.Creator<CentreEscolar> CREATOR = new Parcelable.Creator<CentreEscolar>() {
@@ -84,11 +160,6 @@ public class CentreEscolar implements Comparable,Parcelable {
         this.adresaEscola = adresaEscola;
     }
 
-    public String getEstudisImpartits() {
-        return estudisImpartits;
-    }
 
-    public void setEstudisImpartits(String estudisImpartits) {
-        this.estudisImpartits = estudisImpartits;
-    }
+
 }

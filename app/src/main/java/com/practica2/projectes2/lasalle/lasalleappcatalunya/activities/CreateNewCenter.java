@@ -57,7 +57,8 @@ public class CreateNewCenter extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            data.add(new CentreEscolar("nomescola","adresa","infantil"));
+                            //COMENTAT GUILLE
+                            //data.add(new CentreEscolar("nomescola","adresa","infantil"));
                             // data.remove(position);
                             adapter.notifyDataSetChanged();
                             }
@@ -71,7 +72,8 @@ public class CreateNewCenter extends AppCompatActivity {
 
         if(savedInstanceState == null){
             data = new ArrayList<>(); //no tasks at first
-            data.add(new CentreEscolar("nomescola","adresa","infantil"));
+            //COMENTAT GUILLE
+            //data.add(new CentreEscolar("nomescola","adresa","infantil"));
             ListView listView = findViewById(R.id.listview);
             adapter = new MyListViewAdapterWithOnTouch(data, this, toolbar, listView);
             listView.setAdapter(adapter);

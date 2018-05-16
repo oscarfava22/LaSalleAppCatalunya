@@ -69,7 +69,8 @@ public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.On
         text2.setText(data.get(position).getAdresaEscola());
 
         TextView text3 = view.findViewById(R.id.estudis_impartits_item);
-        text3.setText(data.get(position).getEstudisImpartits());
+        //COMENTAT GUILLE
+        //text3.setText(data.get(position).getEstudisImpartits());
 
         return view;
     }
