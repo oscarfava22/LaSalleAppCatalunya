@@ -12,7 +12,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment" >
     </fragment>
 
-    <include layout="@layout/activity_item_listview"
+    <include layout="@layout/center_info_box_map"
         android:id="@+id/info_box"
         android:visibility="gone">
 

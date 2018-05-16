@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,10 +106,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             for (int i = 0; i < numCenters; i++) {
                 //TODO: assign color depending on the type of the center
-                centersMarkers.add(mMap.addMarker(new MarkerOptions().position(coordinates.get(i)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))));
+                Marker marker = mMap.addMarker(new MarkerOptions().position(coordinates.get(i)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                marker.setTag(i);
+                centersMarkers.add(marker);
             }
         } else { //Sol·licitar centres al Web Service.
-
+            SchoolsAPI schoolsAPI = new SchoolsAPI();
+            centers = schoolsAPI.getSchools();
+            numCenters = centers == null ? 0: centers.size();
         }
     }
 
@@ -129,9 +135,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        TextView t = findViewById(R.id.nom_escola_item);
-        t.setText("NAME");
-        t.setVisibility(View.VISIBLE);
+
+        if (centers == null) return false;
+        CentreEscolar centre = centers.get((int) marker.getTag()); //Obtenir informació del centre associat al marker clicat.
+
+        TextView centerName = findViewById(R.id.nom_escola_info_box);
+        centerName.setText(centre.getNomEscola());
+
+        TextView adressName = findViewById(R.id.adresa_escola_info_box);
+        adressName.setText(centre.getAdresaEscola());
+
+        ImageView image = findViewById(R.id.imatge_escola_item);
+        //TODO: carregar imatge
+
         LinearLayout l = findViewById(R.id.info_box);
         l.setVisibility(View.VISIBLE);
         return false; //False to occur the default behaviour.

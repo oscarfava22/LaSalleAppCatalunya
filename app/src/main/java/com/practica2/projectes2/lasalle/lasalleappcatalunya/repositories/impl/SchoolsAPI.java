@@ -18,7 +18,8 @@ import java.util.ArrayList;
 
 public class SchoolsAPI implements SchoolsRepository {
     private static final String URL = "https://testapi-pprog2.azurewebsites.net/api/schools.php?method=";
-    private static final String METHOD_GET = "getSchools";
+    private static final String METHOD_GET_SCHOOLS = "getSchools";
+    private static final String METHOD_GET = "GET";
     private static final String METHOD_ADD = "addSchool";
     private static final String METHOD_DELETE = "deleteSchool";
     private static final String MSG = "msg";
@@ -38,7 +39,7 @@ public class SchoolsAPI implements SchoolsRepository {
     public ArrayList<CentreEscolar> getSchools() {
         ArrayList<CentreEscolar> list = null;
         //TODO: Petició a l'API per lat i long per cada escola
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL,METHOD_GET);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_GET_SCHOOLS, METHOD_GET);
         try{
             JSONArray search = json.getJSONArray(MSG);
             list = new ArrayList<>(search.length());
