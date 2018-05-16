@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnTouch;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

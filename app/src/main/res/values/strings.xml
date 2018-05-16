@@ -64,4 +64,12 @@
     <string name="cancel_error">Login canceled.</string>
     <string name="login_dialog_error">Something failed at the start of session. Please, try again.</string>
     <string name="register_error">This username already exists. Please, choose another one.</string>
+    <string name="title_activity_map">MapActivity</string>
+
+    <string name="permission_denied">Permission denied</string>
+    <string name="permission_denied_explanation">Without this permission the app is unable to access your location. Are you sure you want to deny this permission?</string>
+    <string name="sure">I\'M SURE</string>
+    <string name="retry">RETRY</string>
+
+
 </resources>

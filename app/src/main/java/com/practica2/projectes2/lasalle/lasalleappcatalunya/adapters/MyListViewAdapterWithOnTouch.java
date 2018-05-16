@@ -3,20 +3,18 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+
 import java.util.ArrayList;
 
 public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.OnTouchListener {
