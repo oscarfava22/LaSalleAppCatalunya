@@ -10,7 +10,10 @@ import java.util.ArrayList;
 
 public interface SchoolsRepository {
     ArrayList<CentreEscolar> getSchools();
-    String addSchool(String school, String address, String province, String[] type, String description);
-    String deleteSchool(int schoolId);
+    //Si addSchool o deleteSchool retorna:
+    //0 --> Hi ha error
+    //1 --> No hi ha error
+    int addSchool(String school, String address, String province, String[] type, String description);
+    int deleteSchool(int schoolId);
     public void establirLocation(CentreEscolar centreEscolar);
 }

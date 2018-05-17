@@ -24,9 +24,11 @@ public class SchoolsAPI implements SchoolsRepository {
     private static final String URL = "https://testapi-pprog2.azurewebsites.net/api/schools.php?method=";
     private static final String METHOD_GET_SCHOOLS = "getSchools";
     private static final String METHOD_GET = "GET";
-    private static final String METHOD_ADD = "addSchool";
-    private static final String METHOD_DELETE = "deleteSchool";
+    private static final String METHOD_POST = "POST";
+    private static final String METHOD_ADD_SCHOOL = "addSchool";
+    private static final String METHOD_DELETE_SCHOOL = "deleteSchool&schoolId=";
     private static final String MSG = "msg";
+    private static final String RES = "res";
     private static final String NOMESCOLA = "schoolName";
     private static final String ADDRESS = "schoolAddress";
     private static final String INFANTIL = "isInfantil";
@@ -75,13 +77,36 @@ public class SchoolsAPI implements SchoolsRepository {
     }
 
     @Override
-    public String addSchool(String school, String address, String province, String[] type, String description) {
-        return null;
+    public int addSchool(String school, String address, String province, String[] type, String description) {
+        int done = 0;
+        //TODO: Arreglar URL
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_ADD_SCHOOL, METHOD_POST);
+        try{
+            done = json.getInt(RES);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        //Si done val:
+            //0 --> Hi ha error
+            //1 --> No hi ha error
+        return done;
     }
 
     @Override
-    public String deleteSchool(int schoolId) {
-        return null;
+    public int deleteSchool(int schoolId) {
+        int done = 0;
+
+        Integer auxId = schoolId;
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_DELETE_SCHOOL + auxId.toString(), METHOD_GET);
+        try{
+            done = json.getInt(RES);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        //Si done val:
+        //0 --> Hi ha error
+        //1 --> No hi ha error
+        return done;
     }
 
     @Override
