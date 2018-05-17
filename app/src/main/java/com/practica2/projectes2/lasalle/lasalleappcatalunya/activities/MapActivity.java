@@ -45,10 +45,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private static final int PERMISSIONS_REQUEST_ACCESS_LOCATION = 12345;
     private GoogleMap mMap;
-    private List<CentreEscolar> centers;
+    private ArrayList<CentreEscolar> centers;
     private ArrayList<LatLng> coordinates;
     private List<Marker> centersMarkers;
     private int numCenters = 0;
+    private CentreEscolar lastCenterClicked;
 
     SchoolsRepository schoolsRepo;
 
@@ -104,6 +105,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 break;
             case R.id.pantallaLlista_map:
                 intent = new Intent(this, PantallaDeCentres.class);
+                intent.putParcelableArrayListExtra("centers", centers);
                 startActivity(intent);
                 break;
             default:
@@ -189,23 +191,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
 
         if (centers == null) return false;
-        CentreEscolar centre = centers.get((int) marker.getTag()); //Obtenir informació del centre associat al marker clicat.
+        lastCenterClicked = centers.get((int) marker.getTag()); //Obtenir informació del centre associat al marker clicat.
 
         TextView centerName = findViewById(R.id.nom_escola_info_box);
-        centerName.setText(centre.getNomEscola());
+        centerName.setText(lastCenterClicked.getNomEscola());
 
         TextView adressName = findViewById(R.id.adresa_escola_info_box);
-        adressName.setText(centre.getAdresaEscola());
+        adressName.setText(lastCenterClicked.getAdresaEscola());
 
         ImageView image = findViewById(R.id.imatge_escola_info_box);
         image.setImageResource(R.drawable.logo_la_salle_catalunya);
         //TODO: carregar imatge
 
         LinearLayout l = findViewById(R.id.info_box);
+
         l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapActivity.this, ActivityDescription.class);
+                intent.putExtra("lastCenterClicked", lastCenterClicked);
                 startActivity(intent);
             }
         });
@@ -242,7 +246,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    private class AsyncRequest extends AsyncTask<String, Void, List<CentreEscolar>> {
+    private class AsyncRequest extends AsyncTask<String, Void, ArrayList<CentreEscolar>> {
 
         private Context context;
         private ProgressDialog progressDialog;
@@ -260,12 +264,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         @Override
-        protected List<CentreEscolar> doInBackground(String... params) {
+        protected ArrayList<CentreEscolar> doInBackground(String... params) {
             return schoolsRepo.getSchools();
         }
 
         @Override
-        protected void onPostExecute(List<CentreEscolar> aList) {
+        protected void onPostExecute(ArrayList<CentreEscolar> aList) {
             super.onPostExecute(aList);
 
             if (progressDialog.isShowing()) {

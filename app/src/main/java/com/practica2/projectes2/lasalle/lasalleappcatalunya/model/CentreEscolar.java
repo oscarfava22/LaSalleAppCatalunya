@@ -8,7 +8,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.util.Comparator;
 
-public class CentreEscolar implements Comparable,Parcelable{
+public class CentreEscolar implements Comparable, Parcelable {
 
     private String nomEscola;
     private String adresaEscola;
