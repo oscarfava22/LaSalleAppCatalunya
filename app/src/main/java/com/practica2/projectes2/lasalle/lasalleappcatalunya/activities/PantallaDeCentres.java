@@ -1,5 +1,6 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class PantallaDeCentres extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("");
+        setTitle(null);
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
         createTabs();
@@ -52,6 +53,7 @@ public class PantallaDeCentres extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.provincies_array, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -61,18 +63,25 @@ public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.accedirLogin) {
-            //TODO pantalla login admins
-            return true;
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.accedirLogin:
+                intent = new Intent(this, LoginAdminActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.pantallaMapa:
+                intent = new Intent(this, MapActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                return false;
         }
-        if(id == R.id.pantallaMapa){
-            //TODO go pantalla mapa
-            return true;
-        }
+        return true;
         //TODO cuando pulsa una provincia...
-        return super.onOptionsItemSelected(item);
     }
 
     private void createTabs(){

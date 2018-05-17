@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 import java.util.Comparator;
 
 public class CentreEscolar implements Comparable,Parcelable{
@@ -179,5 +181,20 @@ public class CentreEscolar implements Comparable,Parcelable{
     }
 
 
-
+    public float getColor() {
+        if (esUni) {
+            return BitmapDescriptorFactory.HUE_BLUE;
+        } else if (esBatx) {
+            return BitmapDescriptorFactory.HUE_MAGENTA;
+        } else if (esFP){
+             return BitmapDescriptorFactory.HUE_GREEN;
+        } else if (esESO) {
+            return BitmapDescriptorFactory.HUE_ORANGE;
+        } else if (esPrimaria) {
+            return BitmapDescriptorFactory.HUE_YELLOW;
+        } else if (esInfantil) {
+            return BitmapDescriptorFactory.HUE_VIOLET;
+        }
+         return BitmapDescriptorFactory.HUE_ROSE;
+    }
 }

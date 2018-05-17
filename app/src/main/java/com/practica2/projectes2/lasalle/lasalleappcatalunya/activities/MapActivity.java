@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,10 +14,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -36,7 +41,7 @@ import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.Sc
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, AdapterView.OnItemSelectedListener {
 
     private static final int PERMISSIONS_REQUEST_ACCESS_LOCATION = 12345;
     private GoogleMap mMap;
@@ -56,6 +61,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) getSupportActionBar().setTitle(null);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -72,11 +78,47 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_map_activity, menu);
+
+        MenuItem item = menu.findItem(R.id.spinner_map);
+        Spinner spinner = (Spinner) item.getActionView();
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.school_groups, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.accedirLogin_map:
+                intent = new Intent(this, LoginAdminActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.pantallaLlista_map:
+                intent = new Intent(this, PantallaDeCentres.class);
+                startActivity(intent);
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapClickListener(this);
 
         //TODO: check permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -110,8 +152,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng catalunya = new LatLng(41.3149, 2.096116);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(catalunya, 7.0f);
         googleMap.moveCamera(cameraUpdate);
-        mMap.addMarker(new MarkerOptions().position(catalunya).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-
 
         if (numCenters > 0) { //Cal recuperar els centres.
 
@@ -157,12 +197,49 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         TextView adressName = findViewById(R.id.adresa_escola_info_box);
         adressName.setText(centre.getAdresaEscola());
 
-        ImageView image = findViewById(R.id.imatge_escola_item);
+        ImageView image = findViewById(R.id.imatge_escola_info_box);
+        image.setImageResource(R.drawable.logo_la_salle_catalunya);
         //TODO: carregar imatge
 
         LinearLayout l = findViewById(R.id.info_box);
+        l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapActivity.this, ActivityDescription.class);
+                startActivity(intent);
+            }
+        });
         l.setVisibility(View.VISIBLE);
         return false; //False to occur the default behaviour.
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        LinearLayout l = findViewById(R.id.info_box);
+        l.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        switch (position) {
+
+            case 0:
+                showAllCenters();
+                break;
+            case 1:
+                showSchoolCenters();
+                break;
+
+            case 2:
+                showOtherCenters();
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     private class AsyncRequest extends AsyncTask<String, Void, List<CentreEscolar>> {
@@ -195,21 +272,68 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 progressDialog.dismiss();
             }
             centers = aList;
-            numCenters = aList.size();
-            for (int i = 0; i < centers.size(); i++) {
-                schoolsRepo.establirLocation(centers.get(i));
-            }
-            for (int i = 0; i < centers.size(); i++) {
-                //TODO: assign color depending on the type of the center
-                Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                marker.setTag(i);
-                centersMarkers.add(marker);
+            if (centers != null) {
+                numCenters = aList.size();
+                for (int i = 0; i < centers.size(); i++) {
+                    schoolsRepo.establirLocation(centers.get(i));
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
+                    marker.setTag(i);
+                    centersMarkers.add(marker);
+                }
             }
             /*
             adapter = new MoviesListViewAdapter(aList, context);
             ListView listView = (ListView) findViewById(R.id.moviesListView);
             listView.setAdapter(adapter);
             */
+        }
+    }
+
+    public void deleteAllCenters () {
+        if (centersMarkers != null) {
+            for (int i = 0; i < centersMarkers.size(); i++) { //Esborrar els markers del mapa
+                centersMarkers.get(i).remove();
+            }
+            centersMarkers.clear();
+        }
+    }
+
+    public void showAllCenters () {
+        deleteAllCenters();
+        if (centers != null) {
+            for (int i = 0; i < centers.size(); i++) {
+                Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
+                marker.setTag(i);
+                centersMarkers.add(marker);
+            }
+        }
+    }
+
+
+    public void showSchoolCenters () {
+        deleteAllCenters();
+        if (centers != null) {
+            for (int i = 0; i < centers.size(); i++) {
+                if (centers.get(i).isEsInfantil() || centers.get(i).isEsPrimaria() || centers.get(i).isEsESO()) {
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
+                    marker.setTag(centersMarkers.size());
+                    centersMarkers.add(marker);
+                }
+            }
+        }
+    }
+
+
+    public void showOtherCenters () {
+        deleteAllCenters();
+        if (centers != null) {
+            for (int i = 0; i < centers.size(); i++) {
+                if (!centers.get(i).isEsInfantil() && !centers.get(i).isEsPrimaria() && !centers.get(i).isEsESO()) {
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
+                    marker.setTag(centersMarkers.size());
+                    centersMarkers.add(marker);
+                }
+            }
         }
     }
 

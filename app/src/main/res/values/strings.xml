@@ -53,6 +53,13 @@
         <item>Tarragona</item>
     </string-array>
 
+    <string-array name="school_groups">
+        <item>Todos</item>
+        <item>Escuelas</item>
+        <item>Otros</item>
+
+    </string-array>
+
     <string name="tipus_estudis_hint">Tipo de estudios</string>
     <string name="button_create_school">CREAR ESCUELA</string>
 
@@ -70,6 +77,10 @@
     <string name="permission_denied_explanation">Without this permission the app is unable to access your location. Are you sure you want to deny this permission?</string>
     <string name="sure">I\'M SURE</string>
     <string name="retry">RETRY</string>
+    <string name="acces_login">Login access</string>
+    <string name="show_list">Show list</string>
+    <string name="provinces">Provinces</string>
+    <string name="show_map">Show map</string>
 
 
 </resources>

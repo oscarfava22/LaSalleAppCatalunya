@@ -19,13 +19,11 @@
             android:id="@+id/adresa_escola_info_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imatge_escola_info_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imatge_escola_info_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/class_photo" />
 
 </LinearLayout>
