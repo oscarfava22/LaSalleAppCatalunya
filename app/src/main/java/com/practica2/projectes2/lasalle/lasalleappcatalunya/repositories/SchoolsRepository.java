@@ -13,7 +13,7 @@ public interface SchoolsRepository {
     //Si addSchool o deleteSchool retorna:
     //0 --> Hi ha error
     //1 --> No hi ha error
-    int addSchool(String school, String address, String province, String[] type, String description);
+    int addSchool(String schoolName, String address, String province, String[] type, String description);
     int deleteSchool(int schoolId);
     public void establirLocation(CentreEscolar centreEscolar);
 }

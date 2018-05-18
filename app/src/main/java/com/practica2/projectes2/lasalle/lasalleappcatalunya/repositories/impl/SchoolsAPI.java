@@ -77,10 +77,13 @@ public class SchoolsAPI implements SchoolsRepository {
     }
 
     @Override
-    public int addSchool(String school, String address, String province, String[] type, String description) {
+    public int addSchool(String schoolName, String address, String province, String[] type, String description) {
         int done = 0;
         //TODO: Arreglar URL
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_ADD_SCHOOL, METHOD_POST);
+        String auxMuntat = null;
+        auxMuntat = URL.concat(METHOD_ADD_SCHOOL).concat("&").concat(schoolName).concat("&").concat(address).concat("&").concat(province)
+                .concat("&").concat(type[0]).concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5]);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(auxMuntat, METHOD_POST);
         try{
             done = json.getInt(RES);
         }catch (JSONException e){
