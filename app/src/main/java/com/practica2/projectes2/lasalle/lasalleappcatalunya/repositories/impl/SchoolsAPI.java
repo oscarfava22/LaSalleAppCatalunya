@@ -81,8 +81,9 @@ public class SchoolsAPI implements SchoolsRepository {
         int done = 0;
         //TODO: Arreglar URL
         String auxMuntat = null;
-        auxMuntat = URL.concat(METHOD_ADD_SCHOOL).concat("&").concat(schoolName).concat("&").concat(address).concat("&").concat(province)
-                .concat("&").concat(type[0]).concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5]);
+        auxMuntat = URL.concat(METHOD_ADD_SCHOOL).concat("&name=").concat(schoolName).concat("&address=").concat(address).concat("&province=")
+                .concat(province).concat("&type=").concat(type[0]).concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5])
+                .concat("&description=").concat(description);
         JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(auxMuntat, METHOD_POST);
         try{
             done = json.getInt(RES);

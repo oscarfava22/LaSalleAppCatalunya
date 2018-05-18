@@ -32,10 +32,10 @@
     <string name="title_provincia">Província de l\'escola</string>
 
     <string-array name="provincies_array">
-        <item>Barcelona</item>
-        <item>Girona</item>
-        <item>Lleida</item>
-        <item>Tarragona</item>
+        <item>barcelona</item>
+        <item>girona</item>
+        <item>lleida</item>
+        <item>tarragona</item>
     </string-array>
 
     <string name="tipus_estudis_hint">Tipus d\'estudis</string>
