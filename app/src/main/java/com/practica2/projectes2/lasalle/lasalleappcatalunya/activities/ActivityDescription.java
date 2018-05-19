@@ -30,22 +30,22 @@ public class ActivityDescription extends AppCompatActivity {
         TextView tipusestudisLlista = (TextView) findViewById(R.id.text_view_tipus_estudis_activityDescription);
         String llistat = "";
         if(centreEscolar.isEsUni()){
-            llistat = llistat.concat("HARDCODED UNIVERSITAT").concat(System.lineSeparator());
+            llistat.concat("HARDCODED UNIVERSITAT").concat(System.lineSeparator());
         }
         if(centreEscolar.isEsFP()){
-            llistat = llistat.concat("HARDCODED FP").concat(System.lineSeparator());
+            llistat.concat("HARDCODED FP").concat(System.lineSeparator());
         }
         if(centreEscolar.isEsBatx()){
-            llistat = llistat.concat("HARDCODED BATXILLERAT").concat(System.lineSeparator());
+            llistat.concat("HARDCODED BATXILLERAT").concat(System.lineSeparator());
         }
         if(centreEscolar.isEsESO()){
-            llistat = llistat.concat("HARDCODED ESO").concat(System.lineSeparator());
+            llistat.concat("HARDCODED ESO").concat(System.lineSeparator());
         }
         if(centreEscolar.isEsPrimaria()){
-            llistat = llistat.concat("HARDCODED PRIMARIA").concat(System.lineSeparator());
+            llistat.concat("HARDCODED PRIMARIA").concat(System.lineSeparator());
         }
         if(centreEscolar.isEsInfantil()){
-            llistat = llistat.concat("HARDCODED INFANTIL").concat(System.lineSeparator());
+            llistat.concat("HARDCODED INFANTIL").concat(System.lineSeparator());
         }
         tipusestudisLlista.setText(llistat);
 
