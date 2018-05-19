@@ -1,8 +1,11 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
@@ -48,6 +51,15 @@ public class ActivityDescription extends AppCompatActivity {
 
         TextView descripcio = (TextView) findViewById(R.id.text_view_text_descripcio_activityDescription);
         descripcio.setText(centreEscolar.getDescripcio());
+
+        FloatingActionButton fab =  findViewById(R.id.fab_activityDescription);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
 
     }
 }

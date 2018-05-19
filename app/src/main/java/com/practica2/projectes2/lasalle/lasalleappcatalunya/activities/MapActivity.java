@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -50,8 +51,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private List<Marker> centersMarkers;
     private int numCenters = 0;
     private CentreEscolar lastCenterClicked;
-
-    SchoolsRepository schoolsRepo;
+    private BottomSheetBehavior sheetBehavior;
+    private SchoolsRepository schoolsRepo;
+    private int bottomSheetState;
+    private boolean firstTime;
+    private boolean requestShowing;
+    private int spinnerState = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +73,62 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mapFragment.getMapAsync(this);
 
+        centersMarkers = new ArrayList<>();
+
         if (savedInstanceState != null) {
             //Recuperar coordinadas dels centres.
             coordinates = savedInstanceState.getParcelableArrayList("coordinates");
             numCenters = savedInstanceState.getInt("numCenters");
+            centers = savedInstanceState.getParcelableArrayList("centers");
+            lastCenterClicked = savedInstanceState.getParcelable("lastCenterClicked");
+            bottomSheetState = savedInstanceState.getInt("bottomSheetState");
+            firstTime = savedInstanceState.getBoolean("firstTime");
+            requestShowing = savedInstanceState.getBoolean("requestShowing");
+            spinnerState = savedInstanceState.getInt("spinnerState");
+
         } else {
-            centersMarkers = new ArrayList<>();
+            coordinates = new ArrayList<>();
+            firstTime = true;
+            requestShowing = false;
         }
 
+        LinearLayout layoutBottomSheet = findViewById(R.id.bottom_sheet);
+
+        layoutBottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapActivity.this, ActivityDescription.class);
+                intent.putExtra("lastCenterClicked", lastCenterClicked);
+                startActivity(intent);
+            }
+        });
+
+        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+
+        sheetBehavior.setHideable(true);
+
+        if (bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            bottomSheetState = BottomSheetBehavior.STATE_HIDDEN;
+
+        } else {
+
+            if (centers != null) {
+
+                TextView centerName = findViewById(R.id.nom_escola_info_box);
+                centerName.setText(lastCenterClicked.getNomEscola());
+
+                TextView adressName = findViewById(R.id.adresa_escola_info_box);
+                adressName.setText(lastCenterClicked.getAdresaEscola());
+
+                ImageView image = findViewById(R.id.imatge_escola_info_box);
+                image.setImageResource(R.drawable.logo_la_salle_catalunya);
+                //TODO: carregar imatge
+            }
+
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+        }
     }
 
     @Override
@@ -91,6 +144,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(this);
+
+        spinner.setSelection(spinnerState);
         return true;
     }
 
@@ -107,6 +162,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 intent = new Intent(this, PantallaDeCentres.class);
                 intent.putParcelableArrayListExtra("centers", centers);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 return false;
@@ -122,34 +178,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
-        //TODO: check permissions
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //TODO: check permissions
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                //En el nostre cas no cal justificar els permisos de ubicació, ja que es tracta d'una aplicació destinada a tal fi, però ho implementem igualment.
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.permission_denied);
-                builder.setMessage(R.string.permission_denied_explanation);
-                builder.setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                if (firstTime && !requestShowing) {
 
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        //En el nostre cas no cal justificar els permisos de ubicació, ja que es tracta d'una aplicació destinada a tal fi, però ho implementem igualment.
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setTitle(R.string.permission_denied);
+                        builder.setMessage(R.string.permission_denied_explanation);
+                        builder.setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                firstTime = false;
+                            }
+                        });
+                        builder.setNegativeButton(R.string.retry, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_LOCATION);
+                                requestShowing = true;
+                            }
+                        });
+                        builder.create().show();
+
+                    } else {
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_LOCATION);
+                        requestShowing = true;
                     }
-                });
-                builder.setNegativeButton(R.string.retry, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_LOCATION);
-
-                    }
-                });
-                builder.create().show();
+                }
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_LOCATION);
+                mMap.setMyLocationEnabled(true);
+                int actionBarHeight = getSupportActionBar() != null? getSupportActionBar().getHeight() : 0;
+                mMap.setPadding(0, actionBarHeight, 0, 0);
             }
-        } else {
-            mMap.setMyLocationEnabled(true);
-        }
 
         LatLng catalunya = new LatLng(41.3149, 2.096116);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(catalunya, 7.0f);
@@ -164,9 +227,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 centersMarkers.add(marker);
             }
         } else { //Sol·licitar centres al Web Service.
-            //SchoolsAPI schoolsAPI = new SchoolsAPI();
-            //centers = schoolsAPI.getSchools();
-            //numCenters = centers == null ? 0: centers.size();
             new AsyncRequest(this).execute();
         }
     }
@@ -176,7 +236,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if(requestCode == PERMISSIONS_REQUEST_ACCESS_LOCATION) {
             if (grantResults.length > 1 && (grantResults[0] == PackageManager.PERMISSION_GRANTED || grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
                 mMap.setMyLocationEnabled(true);
+                int actionBarHeight = getSupportActionBar() != null? getSupportActionBar().getHeight() : 0;
+                mMap.setPadding(0, actionBarHeight, 0, 0);
             }
+            firstTime = false;
+            requestShowing = false;
         }
     }
 
@@ -184,6 +248,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("coordinates", coordinates);
         outState.putInt("numCenters", numCenters);
+        outState.putParcelableArrayList("centers", centers);
+        outState.putParcelable("lastCenterClicked", lastCenterClicked);
+        outState.putInt("bottomSheetState", sheetBehavior.getState());
+        outState.putBoolean("firstTime", firstTime);
+        outState.putBoolean("requestShowing", requestShowing);
+        outState.putInt("spinnerState", spinnerState);
         super.onSaveInstanceState(outState);
     }
 
@@ -203,24 +273,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         image.setImageResource(R.drawable.logo_la_salle_catalunya);
         //TODO: carregar imatge
 
-        LinearLayout l = findViewById(R.id.info_box);
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+        }
 
-        l.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapActivity.this, ActivityDescription.class);
-                intent.putExtra("lastCenterClicked", lastCenterClicked);
-                startActivity(intent);
-            }
-        });
-        l.setVisibility(View.VISIBLE);
         return false; //False to occur the default behaviour.
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        LinearLayout l = findViewById(R.id.info_box);
-        l.setVisibility(View.GONE);
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
     }
 
     @Override
@@ -230,13 +295,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             case 0:
                 showAllCenters();
+                spinnerState = 0;
                 break;
             case 1:
                 showSchoolCenters();
+                spinnerState = 1;
                 break;
 
             case 2:
                 showOtherCenters();
+                spinnerState = 2;
                 break;
         }
     }
@@ -279,17 +347,37 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             if (centers != null) {
                 numCenters = aList.size();
                 for (int i = 0; i < centers.size(); i++) {
-                    schoolsRepo.establirLocation(centers.get(i));
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
-                    marker.setTag(i);
-                    centersMarkers.add(marker);
+                    new AsyncCoordinatesRequest(centers.get(i), i).execute();
                 }
             }
-            /*
-            adapter = new MoviesListViewAdapter(aList, context);
-            ListView listView = (ListView) findViewById(R.id.moviesListView);
-            listView.setAdapter(adapter);
-            */
+
+        }
+    }
+
+    private class AsyncCoordinatesRequest extends AsyncTask<Void, Void, CentreEscolar> {
+
+        private CentreEscolar centreEscolar;
+        private int index;
+
+        public AsyncCoordinatesRequest(CentreEscolar centreEscolar, int index) {
+            this.centreEscolar = centreEscolar;
+            this.index = index;
+        }
+
+        @Override
+        protected CentreEscolar doInBackground(Void... voids) {
+            return schoolsRepo.establirLocation(centreEscolar);
+        }
+
+        @Override
+        protected void onPostExecute(CentreEscolar centreEscolar) {
+
+                LatLng posicio = new LatLng(centreEscolar.getLatitude(), centreEscolar.getLongitude());
+                Marker marker = mMap.addMarker(new MarkerOptions().position(posicio).icon(BitmapDescriptorFactory.defaultMarker(centreEscolar.getColor())));
+                marker.setTag(index);
+                centersMarkers.add(marker);
+                coordinates.add(posicio);
+
         }
     }
 
@@ -340,6 +428,4 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
     }
-
-
 }

@@ -16,8 +16,8 @@ import java.net.URL;
 public class HttpRequestHelper {
 
     private static HttpRequestHelper instance = null;
-    private final int CONNECTION_TIMEOUT = 10000;
-    private final int READ_TIMEOUT = 2000;
+    private final int CONNECTION_TIMEOUT = 20000;
+    private final int READ_TIMEOUT = 20000;
 
     private HttpRequestHelper(){}
 

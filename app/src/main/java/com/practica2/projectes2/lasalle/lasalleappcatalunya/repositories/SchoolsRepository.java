@@ -15,5 +15,5 @@ public interface SchoolsRepository {
     //1 --> No hi ha error
     int addSchool(String schoolName, String address, String province, String[] type, String description);
     int deleteSchool(int schoolId);
-    public void establirLocation(CentreEscolar centreEscolar);
+    public CentreEscolar establirLocation(CentreEscolar centreEscolar);
 }

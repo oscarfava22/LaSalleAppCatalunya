@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Guillem on 11/05/2018.
@@ -113,10 +114,11 @@ public class SchoolsAPI implements SchoolsRepository {
     }
 
     @Override
-    public void establirLocation(CentreEscolar centreEscolar){
+    public CentreEscolar establirLocation(CentreEscolar centreEscolar){
         Geocoder geocoder = new Geocoder(context);
         try {
-            Address a = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1).get(0);
+            List<Address> addresses = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1);
+            Address a = addresses == null ? null : addresses.get(0);
             if (a == null){
                 centreEscolar.setLatitude(0);
                 centreEscolar.setLongitude(0);
@@ -128,6 +130,8 @@ public class SchoolsAPI implements SchoolsRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return centreEscolar;
     }
+
 }
 

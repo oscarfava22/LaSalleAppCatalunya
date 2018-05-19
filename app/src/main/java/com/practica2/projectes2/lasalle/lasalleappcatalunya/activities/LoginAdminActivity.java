@@ -13,12 +13,15 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.User;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.UsersDB;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -37,7 +40,9 @@ public class LoginAdminActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        // App code
+                        Intent intent = new Intent(LoginAdminActivity.this, CreateNewCenter.class);
+                        startActivity(intent);
+                        LoginManager.getInstance().logOut(); //Tanquem la sessió per major seguretat.
                         Log.d("success", "Success");
                     }
 
@@ -57,10 +62,6 @@ public class LoginAdminActivity extends AppCompatActivity {
                         Log.d("error", "error");
                     }
                 });
-
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        //boolean isLoggedIn = accessToken == null;
-        //boolean isExpired = accessToken.isExpired();
     }
 
     @Override

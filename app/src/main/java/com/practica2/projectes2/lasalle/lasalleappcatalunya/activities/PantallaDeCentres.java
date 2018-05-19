@@ -75,6 +75,7 @@ public class PantallaDeCentres extends AppCompatActivity {
             case R.id.pantallaMapa:
                 intent = new Intent(this, MapActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             default:
