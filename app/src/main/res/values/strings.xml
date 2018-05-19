@@ -47,10 +47,10 @@
     <string name="title_provincia">Provincia de la escuela</string>
 
     <string-array name="provincies_array">
-        <item>Barcelona</item>
-        <item>Girona</item>
-        <item>Lleida</item>
-        <item>Tarragona</item>
+        <item>barcelona</item>
+        <item>girona</item>
+        <item>lleida</item>
+        <item>tarragona</item>
     </string-array>
 
     <string name="barcelona">Barcelona</string>
@@ -95,6 +95,14 @@
     <string name="ESO">ESO</string>
     <string name="FP">FP</string>
     <string name="UNI">University</string>
+
+    <string name="tipus_estudis_title">Courses</string>
+    <string name="uni">Universidad</string>
+    <string name="FP">FP</string>
+    <string name="batx">Bachillerato</string>
+    <string name="eso">ESO</string>
+    <string name="infantil">Infantil</string>
+    <string name="primaria">Prmaria</string>
 
 
 </resources>

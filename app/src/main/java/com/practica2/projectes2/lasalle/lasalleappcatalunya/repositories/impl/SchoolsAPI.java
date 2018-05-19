@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Guillem on 11/05/2018.
@@ -77,10 +78,14 @@ public class SchoolsAPI implements SchoolsRepository {
     }
 
     @Override
-    public int addSchool(String school, String address, String province, String[] type, String description) {
+    public int addSchool(String schoolName, String address, String province, String[] type, String description) {
         int done = 0;
         //TODO: Arreglar URL
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_ADD_SCHOOL, METHOD_POST);
+        String auxMuntat = null;
+        auxMuntat = URL.concat(METHOD_ADD_SCHOOL).concat("&name=").concat(schoolName).concat("&address=").concat(address).concat("&province=")
+                .concat(province).concat("&type=").concat(type[0]).concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5])
+                .concat("&description=").concat(description);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(auxMuntat, METHOD_POST);
         try{
             done = json.getInt(RES);
         }catch (JSONException e){
@@ -110,10 +115,11 @@ public class SchoolsAPI implements SchoolsRepository {
     }
 
     @Override
-    public void establirLocation(CentreEscolar centreEscolar){
+    public CentreEscolar establirLocation(CentreEscolar centreEscolar){
         Geocoder geocoder = new Geocoder(context);
         try {
-            Address a = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1).get(0);
+            List<Address> addresses = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1);
+            Address a = addresses == null ? null : addresses.get(0);
             if (a == null){
                 centreEscolar.setLatitude(0);
                 centreEscolar.setLongitude(0);
@@ -125,6 +131,8 @@ public class SchoolsAPI implements SchoolsRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return centreEscolar;
     }
+
 }
 

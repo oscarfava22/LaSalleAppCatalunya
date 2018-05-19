@@ -53,6 +53,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/tipus_estudis_title"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    android:id="@+id/text_view_title_tipus_estudis_activityDescription"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/tipus_estudis_test"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
