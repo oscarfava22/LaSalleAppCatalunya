@@ -31,6 +31,6 @@
         android:id="@+id/imatge_escola_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/class_photo" />
+        android:background="@drawable/logo_la_salle_catalunya" />
 
 </LinearLayout>

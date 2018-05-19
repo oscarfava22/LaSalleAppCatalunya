@@ -1,6 +1,7 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,9 @@ public class PantallaDeCentres extends AppCompatActivity {
     private ListViewFragment tots;
     private ListViewFragment escoles;
     private ListViewFragment altres;
+    private Spinner spinner;
+    private ArrayList<CentreEscolar> escolesList;
+    private static final String SCHOOLS = "schoolKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,9 @@ public class PantallaDeCentres extends AppCompatActivity {
         setTitle(null);
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
-        createTabs();
+        if(savedInstanceState == null){
+            createTabs();
+        }
     }
 
     private void createToolbar() {
@@ -46,8 +52,7 @@ public class PantallaDeCentres extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_pantalladecentres, menu);
 
-        MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) item.getActionView();
+        spinner =  findViewById(R.id.spinner);
 
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter();
 
@@ -78,39 +83,87 @@ public class PantallaDeCentres extends AppCompatActivity {
                 break;
 
             default:
+                 if(spinner.getSelectedItem().toString().equals(getString(R.string.barcelona))){
+                     tots.setFilteredListView(0);
+                     escoles.setFilteredListView(0);
+                     altres.setFilteredListView(0);
+                 }
+                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.girona))){
+                     tots.setFilteredListView(1);
+                     escoles.setFilteredListView(1);
+                     altres.setFilteredListView(1);
+                 }
+                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.lleida))){
+                     tots.setFilteredListView(2);
+                     escoles.setFilteredListView(2);
+                     altres.setFilteredListView(2);
+                 }
+                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.tarragona))){
+                     tots.setFilteredListView(3);
+                     escoles.setFilteredListView(3);
+                     altres.setFilteredListView(3);
+                 }
                 return false;
         }
         return true;
-        //TODO cuando pulsa una provincia...
     }
 
     private void createTabs(){
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.viewPager);
+
         //creating the arrays to be registered in the tabEntry
         tots = new ListViewFragment();
         altres = new ListViewFragment();
         escoles = new ListViewFragment();
 
-        /* No puedes poner las arrays porque no esta la vista creada.
-         //TODO temporal array
-        ArrayList<CentreEscolar> centreEscolarsTemporal = new ArrayList<>();
-        centreEscolarsTemporal.add(new CentreEscolar("aa","aa","bb","bb"));
-        //TODO al listview deberias pasar el array de info o algo
-        tots.setDataArray(centreEscolarsTemporal);
-        altres.setDataArray(centreEscolarsTemporal);
-        escoles.setDataArray(centreEscolarsTemporal);
-         */
+        escolesList = new ArrayList<>();
+        CentreEscolar a = new CentreEscolar();
+        a.setEsFP(true);
+        a.setProvincia("Barcelona");
+        CentreEscolar b = new CentreEscolar();
+        b.setEsBatx(true);
+        b.setProvincia("Girona");
+        CentreEscolar h = new CentreEscolar();
+        h.setProvincia("Lleida");
+        h.setEsInfantil(true);
+        CentreEscolar c = new CentreEscolar();
+        c.setAdresaEscola("aa");
+        c.setProvincia("Tarragona");
+        c.setEsBatx(true);
+
+        escolesList.add(c);
+        escolesList.add(a);
+        escolesList.add(h);
+        escolesList.add(b);
+
+
+        tots.setDataArray(escolesList, getString(R.string.all));
+        altres.setDataArray(escolesList,getString(R.string.othrs));
+        escoles.setDataArray(escolesList,getString(R.string.schoola));
+        //TODO al listview deberias pasar el array de info
+
 
         //creating all the entries
         ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
         entries.add(new TabAdapter.TabEntry(tots, getString(R.string.All)));
-        //TODO cargar dadas en todos los fragmentos (las listas)
         entries.add(new TabAdapter.TabEntry(escoles, getString(R.string.IPE)));
         entries.add(new TabAdapter.TabEntry(altres, getString(R.string.BFU)));
 
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager(), entries);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putParcelableArrayList(SCHOOLS, escolesList);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }

@@ -53,12 +53,20 @@
         <item>Tarragona</item>
     </string-array>
 
-    <string-array name="school_groups">
-        <item>Todos</item>
-        <item>Escuelas</item>
-        <item>Otros</item>
+    <string name="barcelona">Barcelona</string>
+    <string name="girona">Girona</string>
+    <string name="lleida">Lleida</string>
+    <string name="tarragona">Tarragona</string>
 
+    <string-array name="school_groups">
+        <item>All</item>
+        <item>Schools</item>
+        <item>Others</item>
     </string-array>
+
+    <string name="all">All</string>
+    <string name="schoola">Schools</string>
+    <string name="othrs">Others</string>
 
     <string name="tipus_estudis_hint">Tipo de estudios</string>
     <string name="button_create_school">CREAR ESCUELA</string>
@@ -81,6 +89,12 @@
     <string name="show_list">Show list</string>
     <string name="provinces">Provinces</string>
     <string name="show_map">Show map</string>
+    <string name="Infantil">infantile</string>
+    <string name="Primaria">primary</string>
+    <string name="Batxillerato">Batxillerat</string>
+    <string name="ESO">ESO</string>
+    <string name="FP">FP</string>
+    <string name="UNI">University</string>
 
 
 </resources>
