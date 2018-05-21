@@ -133,6 +133,7 @@ public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.On
         //TODO enviar a la info
         if(-1 != pos){
             Intent intent = new Intent(context, ActivityDescription.class);
+            CentreEscolar aux = data.get(pos);
             intent.putExtra("lastCenterClicked", data.get(pos));
             context.startActivity(intent);
         }

@@ -120,17 +120,22 @@ public class CentreEscolar implements Comparable, Parcelable {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(nomEscola);
-        dest.writeString(adresaEscola);
-    }
-
     private CentreEscolar(Parcel in) {
         nomEscola = in.readString();
         adresaEscola = in.readString();
-
+        descripcio = in.readString();
+        esInfantil  = (in.readInt() == 0) ? false : true;
+        esPrimaria  = (in.readInt() == 0) ? false : true;
+        esESO  = (in.readInt() == 0) ? false : true;
+        esBatx  = (in.readInt() == 0) ? false : true;
+        esFP  = (in.readInt() == 0) ? false : true;
+        esUni  = (in.readInt() == 0) ? false : true;
+        id = in.readInt();
+        provincia = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
     }
+
 
     public static final Parcelable.Creator<CentreEscolar> CREATOR = new Parcelable.Creator<CentreEscolar>() {
         public CentreEscolar createFromParcel(Parcel in) {
@@ -141,6 +146,30 @@ public class CentreEscolar implements Comparable, Parcelable {
             return new CentreEscolar[size];
         }
     };
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nomEscola);
+        dest.writeString(adresaEscola);
+        dest.writeInt(esInfantil ? 1 : 0);
+        dest.writeInt(esPrimaria ? 1 : 0);
+        dest.writeInt(esESO ? 1 : 0);
+        dest.writeInt(esBatx ? 1 : 0);
+        dest.writeInt(esFP ? 1 : 0);
+        dest.writeInt(esUni ? 1 : 0);
+        dest.writeString(descripcio);
+        dest.writeInt(id);
+        dest.writeString(provincia);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+    }
+
+
+
+
+    //
+
     @Override
     public int hashCode() {
         int result = nomEscola != null ? nomEscola.hashCode() : 0;

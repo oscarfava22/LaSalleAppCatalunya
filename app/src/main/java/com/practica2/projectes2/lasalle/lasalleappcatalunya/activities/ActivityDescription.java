@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class ActivityDescription extends AppCompatActivity {
         }
         if(centreEscolar.isEsESO()){
             llistat.concat(getString(R.string.ESO)).concat(System.lineSeparator());
+            Log.d("CHECK", "ESO");
         }
         if(centreEscolar.isEsPrimaria()){
             llistat.concat(getString(R.string.primaria)).concat(System.lineSeparator());

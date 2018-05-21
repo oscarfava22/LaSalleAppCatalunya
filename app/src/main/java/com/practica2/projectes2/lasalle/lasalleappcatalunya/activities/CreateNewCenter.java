@@ -75,6 +75,8 @@ public class CreateNewCenter extends AppCompatActivity {
             centreEscolar.setAdresaEscola("Carrer martin");
             centreEscolar.setEsBatx(true);
             centreEscolar.setNomEscola("Montserrat Roig");
+            centreEscolar.setEsESO(true);
+            centreEscolar.setDescripcio("Descripcio test montse roig");
             data.add(centreEscolar);
             ListView listView = findViewById(R.id.listview);
             adapter = new MyListViewAdapterWithOnTouch(data, this, toolbar, listView);
