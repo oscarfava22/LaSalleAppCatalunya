@@ -29,6 +29,7 @@ public class PantallaDeCentres extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList<CentreEscolar> escolesList;
     private static final String SCHOOLS = "schoolKey";
+    private static final String CENTERS = "centers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class PantallaDeCentres extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
         if(savedInstanceState == null){
+            escolesList = getIntent().getExtras().getParcelableArrayList(CENTERS);
+            //TODO test
             createTabs();
         }
     }
@@ -54,7 +57,7 @@ public class PantallaDeCentres extends AppCompatActivity {
 
         spinner =  findViewById(R.id.spinner);
 
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter();
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(tots,escoles,altres);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.provincies_array, android.R.layout.simple_spinner_item);
@@ -84,26 +87,6 @@ public class PantallaDeCentres extends AppCompatActivity {
                 break;
 
             default:
-                 if(spinner.getSelectedItem().toString().equals(getString(R.string.barcelona))){
-                     tots.setFilteredListView(0);
-                     escoles.setFilteredListView(0);
-                     altres.setFilteredListView(0);
-                 }
-                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.girona))){
-                     tots.setFilteredListView(1);
-                     escoles.setFilteredListView(1);
-                     altres.setFilteredListView(1);
-                 }
-                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.lleida))){
-                     tots.setFilteredListView(2);
-                     escoles.setFilteredListView(2);
-                     altres.setFilteredListView(2);
-                 }
-                 else if(spinner.getSelectedItem().toString().equals(getString(R.string.tarragona))){
-                     tots.setFilteredListView(3);
-                     escoles.setFilteredListView(3);
-                     altres.setFilteredListView(3);
-                 }
                 return false;
         }
         return true;
@@ -117,27 +100,6 @@ public class PantallaDeCentres extends AppCompatActivity {
         tots = new ListViewFragment();
         altres = new ListViewFragment();
         escoles = new ListViewFragment();
-
-        escolesList = new ArrayList<>();
-        CentreEscolar a = new CentreEscolar();
-        a.setEsFP(true);
-        a.setProvincia("Barcelona");
-        CentreEscolar b = new CentreEscolar();
-        b.setEsBatx(true);
-        b.setProvincia("Girona");
-        CentreEscolar h = new CentreEscolar();
-        h.setProvincia("Lleida");
-        h.setEsInfantil(true);
-        CentreEscolar c = new CentreEscolar();
-        c.setAdresaEscola("aa");
-        c.setProvincia("Tarragona");
-        c.setEsBatx(true);
-
-        escolesList.add(c);
-        escolesList.add(a);
-        escolesList.add(h);
-        escolesList.add(b);
-
 
         tots.setDataArray(escolesList, getString(R.string.all));
         altres.setDataArray(escolesList,getString(R.string.othrs));
@@ -158,13 +120,16 @@ public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
         outState.putParcelableArrayList(SCHOOLS, escolesList);
+        super.onSaveInstanceState(outState, outPersistentState);
+        //TODO no se carga bien!!
 
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        this.escolesList = savedInstanceState.getParcelableArrayList(SCHOOLS);
+        createTabs();
     }
 }

@@ -1,17 +1,14 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
-import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnItemClick;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnTouch;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
@@ -32,39 +29,46 @@ public class ListViewFragment extends Fragment{
     }
 
     public void setDataArray(ArrayList<CentreEscolar> cityArrayList, String estudis) {
-        this.cityAllArrayList = new ArrayList<>(cityArrayList);
+        this.cityAllArrayList = cityArrayList;
         this.estudis = estudis;
     }
 
-    public void filterByType(){
-        if(estudis.equals(getActivity().getString(R.string.othrs)) ){
-            for (CentreEscolar centreEscolar: filteredArraylist) {
-                if(1 == 1){
-                    filteredArraylist.remove(centreEscolar);
+    public  void filterByType(){
+        //TODO call this function
+        if(filteredArraylist != null && options.size() != 0){
+            if(filteredArraylist.size() != 0) {
+                if (estudis.equals(getActivity().getString(R.string.othrs))) {
+                    for (CentreEscolar centreEscolar : filteredArraylist) {
+                        if (centreEscolar.isEsPrimaria() || centreEscolar.isEsESO() || centreEscolar.isEsInfantil()) {
+                            filteredArraylist.remove(centreEscolar);
+                        }
+                    }
+                } else if (estudis.equals(getActivity().getString(R.string.all))) {
+                    //do nothing
+                } else if (estudis.equals(getActivity().getString(R.string.schoola))) {
+                    for (CentreEscolar centreEscolar : filteredArraylist) {
+                        if (centreEscolar.isEsFP() || centreEscolar.isEsUni() || centreEscolar.isEsBatx()) {
+                            filteredArraylist.remove(centreEscolar);
+                        }
+                    }
                 }
+                adapter.notifyDataSetChanged();
             }
         }
-        else if(estudis.equals(getActivity().getString(R.string.all))){
-            //do nothing
-        }
-        else if(estudis.equals(getActivity().getString(R.string.schoola))){
-            for (CentreEscolar centreEscolar: filteredArraylist) {
-                if(1 == 1){
-                    filteredArraylist.remove(centreEscolar);
-                }
-            }
-        }
-        adapter.notifyDataSetChanged();
     }
 
     public void setFilteredListView(int option){ //0 = Barcelona,etc.
-        filteredArraylist.clear();
-        for (CentreEscolar centreEscolar: cityAllArrayList) {
-            if(centreEscolar.getProvincia().equals(options.get(option))){
-                filteredArraylist.add(centreEscolar);
+        if(cityAllArrayList != null && options.size() != 0){
+            if(cityAllArrayList.size() != 0){
+                filteredArraylist.clear();
+                for (int i = 0; i < cityAllArrayList.size(); i++) {
+                    if(cityAllArrayList.get(i).getProvincia().equals(options.get(option))){
+                        filteredArraylist.add(cityAllArrayList.get(i));
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         }
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -75,8 +79,6 @@ public class ListViewFragment extends Fragment{
         options.add(getActivity().getString(R.string.girona));
         options.add(getActivity().getString(R.string.lleida));
         options.add(getActivity().getString(R.string.tarragona));
-        setFilteredListView(0);
-        filterByType();
     }
 
     @Nullable

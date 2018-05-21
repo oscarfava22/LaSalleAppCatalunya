@@ -31,6 +31,8 @@
     <string name="school_address_hint">Adreça de l\'escola</string>
     <string name="title_provincia">Província de l\'escola</string>
 
+    <string name="ADD">afegir</string>
+
     <string-array name="provincies_array">
         <item>barcelona</item>
         <item>girona</item>
@@ -52,6 +54,11 @@
     <string name="ESO">ESO</string>
     <string name="FP">FP</string>
     <string name="UNI">Universitat</string>
-
+    <string name="tipus_estudis_title">Cursos</string>
+    <string name="uni">Universitat</string>
+    <string name="batx">Batxillerat</string>
+    <string name="eso">ESO</string>
+    <string name="infantil">infantil</string>
+    <string name="primaria">primaria</string>
 
 </resources>

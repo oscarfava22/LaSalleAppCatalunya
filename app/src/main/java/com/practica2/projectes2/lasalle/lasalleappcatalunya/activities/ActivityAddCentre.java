@@ -2,6 +2,7 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.design.widget.TextInputEditText;
@@ -27,9 +28,13 @@ import java.util.ArrayList;
 
 public class ActivityAddCentre extends AppCompatActivity {
 
-    CentreEscolar centreEscolar = new CentreEscolar();
+    private CentreEscolar centreEscolar = new CentreEscolar();
 
-    SchoolsRepository schoolsRepo;
+    private SchoolsRepository schoolsRepo;
+
+    private static  final String SCHOOL = "school";
+    private static  final String ERROR = "error";
+    private static final String ACTIVITY_ADD = "ActivitAdd";
 
 
     @Override
@@ -107,6 +112,12 @@ public class ActivityAddCentre extends AppCompatActivity {
 
             afegeixEscolaAPI(centreEscolar);
         }
+
+        Intent intent = new Intent(this, CreateNewCenter.class);
+        intent.putExtra(ERROR, error);
+        intent.putExtra(SCHOOL, centreEscolar);
+        intent.putExtra(ACTIVITY_ADD, "ComingFromActivityAdd");
+        startActivity(intent);
 
     }
 
