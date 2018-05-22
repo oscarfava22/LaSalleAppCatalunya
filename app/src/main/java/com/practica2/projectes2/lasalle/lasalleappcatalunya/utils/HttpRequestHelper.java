@@ -60,7 +60,7 @@ public class HttpRequestHelper {
             }
 
         } catch (Exception ex) {
-            Log.e(getClass().getName(), "Exception", ex);
+            //Log.e(getClass().getName(), "Exception", ex);
         } finally {
             if (connection != null) {
                 try {

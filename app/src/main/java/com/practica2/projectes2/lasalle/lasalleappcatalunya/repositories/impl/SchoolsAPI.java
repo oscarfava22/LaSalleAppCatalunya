@@ -119,7 +119,10 @@ public class SchoolsAPI implements SchoolsRepository {
         Geocoder geocoder = new Geocoder(context);
         try {
             List<Address> addresses = geocoder.getFromLocationName(centreEscolar.getAdresaEscola(), 1);
-            Address a = addresses == null ? null : addresses.get(0);
+            Address a = null;
+            if (addresses != null && addresses.size() > 0) {
+                a = addresses.get(0);
+            }
             if (a == null){
                 centreEscolar.setLatitude(0);
                 centreEscolar.setLongitude(0);

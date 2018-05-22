@@ -184,10 +184,10 @@ public class CentreEscolar implements Comparable, Parcelable {
     public float getColor() {
         if (esUni) {
             return BitmapDescriptorFactory.HUE_BLUE;
+        } else if (esFP){
+            return BitmapDescriptorFactory.HUE_GREEN;
         } else if (esBatx) {
             return BitmapDescriptorFactory.HUE_MAGENTA;
-        } else if (esFP){
-             return BitmapDescriptorFactory.HUE_GREEN;
         } else if (esESO) {
             return BitmapDescriptorFactory.HUE_ORANGE;
         } else if (esPrimaria) {

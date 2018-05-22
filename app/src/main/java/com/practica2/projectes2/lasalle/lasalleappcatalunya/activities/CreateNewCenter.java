@@ -89,17 +89,6 @@ public class CreateNewCenter extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-        MenuInflater inflater = getMenuInflater();
-
-        inflater.inflate(R.menu.menu_createnewcenter, menu);
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 

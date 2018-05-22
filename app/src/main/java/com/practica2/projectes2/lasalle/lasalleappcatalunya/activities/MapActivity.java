@@ -47,9 +47,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final int PERMISSIONS_REQUEST_ACCESS_LOCATION = 12345;
     private GoogleMap mMap;
     private ArrayList<CentreEscolar> centers;
-    private ArrayList<LatLng> coordinates;
     private List<Marker> centersMarkers;
-    private int numCenters = 0;
     private CentreEscolar lastCenterClicked;
     private BottomSheetBehavior sheetBehavior;
     private SchoolsRepository schoolsRepo;
@@ -57,6 +55,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private boolean firstTime;
     private boolean requestShowing;
     private int spinnerState = 0;
+    private AsyncRequest asyncRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,23 +73,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         centersMarkers = new ArrayList<>();
-
-        if (savedInstanceState != null) {
-            //Recuperar coordinadas dels centres.
-            coordinates = savedInstanceState.getParcelableArrayList("coordinates");
-            numCenters = savedInstanceState.getInt("numCenters");
-            centers = savedInstanceState.getParcelableArrayList("centers");
-            lastCenterClicked = savedInstanceState.getParcelable("lastCenterClicked");
-            bottomSheetState = savedInstanceState.getInt("bottomSheetState");
-            firstTime = savedInstanceState.getBoolean("firstTime");
-            requestShowing = savedInstanceState.getBoolean("requestShowing");
-            spinnerState = savedInstanceState.getInt("spinnerState");
-
-        } else {
-            coordinates = new ArrayList<>();
-            firstTime = true;
-            requestShowing = false;
-        }
+        firstTime = true;
+        requestShowing = false;
 
         LinearLayout layoutBottomSheet = findViewById(R.id.bottom_sheet);
 
@@ -107,7 +91,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         sheetBehavior.setHideable(true);
 
-        if (bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
+        if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             bottomSheetState = BottomSheetBehavior.STATE_HIDDEN;
 
@@ -123,7 +107,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 ImageView image = findViewById(R.id.imatge_escola_info_box);
                 image.setImageResource(R.drawable.logo_la_salle_catalunya);
-                //TODO: carregar imatge
             }
 
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -168,6 +151,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (asyncRequest != null) asyncRequest.cancel(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (asyncRequest != null) {
+            asyncRequest.cancelDialog();
+            asyncRequest.cancel(true);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        asyncRequest.context = null;
+        asyncRequest = null;
+        super.onDestroy();
     }
 
     @Override
@@ -218,17 +223,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(catalunya, 7.0f);
         googleMap.moveCamera(cameraUpdate);
 
-        if (numCenters > 0) { //Cal recuperar els centres.
+        //Sol·licitar centres al Web Service.
+        asyncRequest = new AsyncRequest(this);
+        asyncRequest.execute();
 
-            for (int i = 0; i < numCenters; i++) {
-                //TODO: assign color depending on the type of the center
-                Marker marker = mMap.addMarker(new MarkerOptions().position(coordinates.get(i)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                marker.setTag(i);
-                centersMarkers.add(marker);
-            }
-        } else { //Sol·licitar centres al Web Service.
-            new AsyncRequest(this).execute();
-        }
     }
 
     @Override
@@ -245,19 +243,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("coordinates", coordinates);
-        outState.putInt("numCenters", numCenters);
-        outState.putParcelableArrayList("centers", centers);
-        outState.putParcelable("lastCenterClicked", lastCenterClicked);
-        outState.putInt("bottomSheetState", sheetBehavior.getState());
-        outState.putBoolean("firstTime", firstTime);
-        outState.putBoolean("requestShowing", requestShowing);
-        outState.putInt("spinnerState", spinnerState);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public boolean onMarkerClick(Marker marker) {
 
         if (centers == null) return false;
@@ -271,7 +256,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         ImageView image = findViewById(R.id.imatge_escola_info_box);
         image.setImageResource(R.drawable.logo_la_salle_catalunya);
-        //TODO: carregar imatge
 
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -327,7 +311,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.setMessage("HARDCODED");
+            progressDialog.setMessage(getString(R.string.wait));
             progressDialog.show();
         }
 
@@ -340,17 +324,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         protected void onPostExecute(ArrayList<CentreEscolar> aList) {
             super.onPostExecute(aList);
 
-            if (progressDialog.isShowing()) {
+            if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             centers = aList;
             if (centers != null) {
-                numCenters = aList.size();
                 for (int i = 0; i < centers.size(); i++) {
                     new AsyncCoordinatesRequest(centers.get(i), i).execute();
                 }
             }
 
+        }
+
+        public void cancelDialog () {
+            if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            cancelDialog();
         }
     }
 
@@ -376,7 +369,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Marker marker = mMap.addMarker(new MarkerOptions().position(posicio).icon(BitmapDescriptorFactory.defaultMarker(centreEscolar.getColor())));
                 marker.setTag(index);
                 centersMarkers.add(marker);
-                coordinates.add(posicio);
 
         }
     }
@@ -420,7 +412,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         deleteAllCenters();
         if (centers != null) {
             for (int i = 0; i < centers.size(); i++) {
-                if (!centers.get(i).isEsInfantil() && !centers.get(i).isEsPrimaria() && !centers.get(i).isEsESO()) {
+                if (centers.get(i).isEsBatx() || centers.get(i).isEsFP() || centers.get(i).isEsUni()) {
                     Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(centers.get(i).getLatitude(), centers.get(i).getLongitude())).icon(BitmapDescriptorFactory.defaultMarker(centers.get(i).getColor())));
                     marker.setTag(centersMarkers.size());
                     centersMarkers.add(marker);

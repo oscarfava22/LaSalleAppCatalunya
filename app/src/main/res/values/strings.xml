@@ -47,10 +47,10 @@
     <string name="title_provincia">Provincia de la escuela</string>
 
     <string-array name="provincies_array">
-        <item>barcelona</item>
-        <item>girona</item>
-        <item>lleida</item>
-        <item>tarragona</item>
+        <item>Barcelona</item>
+        <item>Girona</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
     </string-array>
 
     <string-array name="school_groups">
@@ -89,6 +89,7 @@
     <string name="eso">ESO</string>
     <string name="infantil">Infantil</string>
     <string name="primaria">Prmaria</string>
+    <string name="wait">Loading information. Please wait.</string>
 
 
 </resources>
