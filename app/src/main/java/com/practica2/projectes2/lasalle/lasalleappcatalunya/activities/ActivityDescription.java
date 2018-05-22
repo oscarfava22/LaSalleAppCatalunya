@@ -35,9 +35,12 @@ public class ActivityDescription extends AppCompatActivity {
         }
         if(centreEscolar.isEsFP()){
             llistat.concat(getString(R.string.FP)).concat(System.lineSeparator());
+
+            Log.d("CHECK", "FP");
         }
         if(centreEscolar.isEsBatx()){
             llistat.concat(getString(R.string.batx)).concat(System.lineSeparator());
+            Log.d("CHECK", "BATX");
         }
         if(centreEscolar.isEsESO()){
             llistat.concat(getString(R.string.ESO)).concat(System.lineSeparator());

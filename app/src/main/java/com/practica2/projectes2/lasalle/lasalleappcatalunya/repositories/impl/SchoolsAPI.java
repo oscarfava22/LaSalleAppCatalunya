@@ -22,8 +22,8 @@ import java.util.List;
  */
 
 public class SchoolsAPI implements SchoolsRepository {
-    private static final String URL = "https://testapi-pprog2.azurewebsites.net/api/schools.php?method=";
-    private static final String METHOD_GET_SCHOOLS = "getSchools";
+    private static final String URL = "https://testapi-pprog2.azurewebsites.net/api/schools.php";
+    private static final String METHOD_GET_SCHOOLS = "?method=getSchools";
     private static final String METHOD_GET = "GET";
     private static final String METHOD_POST = "POST";
     private static final String METHOD_ADD_SCHOOL = "addSchool";
@@ -51,7 +51,7 @@ public class SchoolsAPI implements SchoolsRepository {
     public ArrayList<CentreEscolar> getSchools() {
         ArrayList<CentreEscolar> list = null;
         //TODO: Petició a l'API per lat i long per cada escola
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_GET_SCHOOLS, METHOD_GET);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_GET_SCHOOLS, METHOD_GET, null, null, null, null, null);
         try{
             JSONArray search = json.getJSONArray(MSG);
             list = new ArrayList<>(search.length());
@@ -81,11 +81,7 @@ public class SchoolsAPI implements SchoolsRepository {
     public int addSchool(String schoolName, String address, String province, String[] type, String description) {
         int done = 0;
         //TODO: Arreglar URL
-        String auxMuntat = null;
-        auxMuntat = URL.concat(METHOD_ADD_SCHOOL).concat("&name=").concat(schoolName).concat("&address=").concat(address).concat("&province=")
-                .concat(province).concat("&type=").concat(type[0]).concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5])
-                .concat("&description=").concat(description);
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(auxMuntat, METHOD_POST);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL, METHOD_POST, schoolName, address, province, type, description);
         try{
             done = json.getInt(RES);
         }catch (JSONException e){
@@ -102,7 +98,7 @@ public class SchoolsAPI implements SchoolsRepository {
         int done = 0;
 
         Integer auxId = schoolId;
-        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_DELETE_SCHOOL + auxId.toString(), METHOD_GET);
+        JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL + METHOD_DELETE_SCHOOL + auxId.toString(), METHOD_GET, null, null, null, null, null);
         try{
             done = json.getInt(RES);
         }catch (JSONException e){
