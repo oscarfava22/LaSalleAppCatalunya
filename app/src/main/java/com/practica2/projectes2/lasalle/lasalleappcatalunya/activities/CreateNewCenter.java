@@ -26,18 +26,19 @@ public class CreateNewCenter extends AppCompatActivity {
     private boolean orderButtonClicked;
     private Toolbar toolbar;
     private Context context;
+    private static  final String SCHOOL = "school";
+    private static  final String ERROR = "error";
+    private static final String ACTIVITY_ADD = "ActivitAdd";
+    private static final String MESSAGE_ADDCENTER = "ComingFromActivityAdd";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view_centers);
-
-
         context = this;
-
         orderButtonClicked = false;
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         this.toolbar = toolbar;
         toolbar.setTitle("");
@@ -53,18 +54,13 @@ public class CreateNewCenter extends AppCompatActivity {
 
             builder.setTitle(context.getString(R.string.TitleDialogInsert));
 
-            builder.setPositiveButton(context.getString(R.string.app_name),
+            builder.setPositiveButton(context.getString(R.string.ADD),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //COMENTAT GUILLE
-                            //data.add(new CentreEscolar("nomescola","adresa","infantil"));
-                            // data.remove(position);
-                            adapter.notifyDataSetChanged();
-
                             Intent intent = new Intent(CreateNewCenter.this, ActivityAddCentre.class);
                             startActivity(intent);
-                            }
+                        }
                     });
             builder.setNegativeButton(context.getString(R.string.Cancel), null);
 
@@ -73,18 +69,30 @@ public class CreateNewCenter extends AppCompatActivity {
       });
 
 
-        if(savedInstanceState == null){
+        if(savedInstanceState == null) {
             data = new ArrayList<>(); //no tasks at first
-            //COMENTAT GUILLE
-            //data.add(new CentreEscolar("nomescola","adresa","infantil"));
+            CentreEscolar centreEscolar = new CentreEscolar(); //es crea per defecte
+            centreEscolar.setAdresaEscola("Carrer martin");
+            centreEscolar.setEsBatx(true);
+            centreEscolar.setNomEscola("Montserrat Roig");
+            centreEscolar.setEsESO(true);
+            centreEscolar.setDescripcio("Descripcio test montse roig");
+            data.add(centreEscolar);
             ListView listView = findViewById(R.id.listview);
             adapter = new MyListViewAdapterWithOnTouch(data, this, toolbar, listView);
             listView.setAdapter(adapter);
-
             listView.setOnTouchListener(adapter);
-
         }
 
+        Intent intent = getIntent();
+        if(intent == null){
+            if(intent.getExtras().getString(ACTIVITY_ADD).equals(MESSAGE_ADDCENTER)){
+                if(intent.getExtras().getBoolean(ERROR)){
+                    CentreEscolar c = intent.getExtras().getParcelable(SCHOOL);
+                    data.add(c);
+                }
+            }
+        }
 
     }
 
@@ -104,7 +112,7 @@ public class CreateNewCenter extends AppCompatActivity {
             return true;
         }
         if(id == R.id.logout){
-            //logout
+            //TODO where?
             onStop();
             adapter.notifyDataSetChanged();
             return true;

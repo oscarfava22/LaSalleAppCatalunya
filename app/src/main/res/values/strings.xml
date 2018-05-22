@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LaSalleCataluñaApp</string>
-    <string name="All">Todos</string>
-    <string name="IPE">ESCUELAS</string>
-    <string name="BFU">OTROS</string>
+    <string name="All">All</string>
+    <string name="IPE">SCHOOLS</string>
+    <string name="BFU">OTHERS</string>
     <string name="registerAdmin">Registrar un nuevo usuario</string>
     <string name="username">Nombre de usuario</string>
     <string name="realName">Nombre</string>
@@ -53,12 +53,22 @@
         <item>Tarragona</item>
     </string-array>
 
-    <string-array name="school_groups">
-        <item>Todos</item>
-        <item>Escuelas</item>
-        <item>Otros</item>
+    <string name="barcelona">Barcelona</string>
+    <string name="girona">Girona</string>
+    <string name="lleida">Lleida</string>
+    <string name="tarragona">Tarragona</string>
 
+    <string-array name="school_groups">
+        <item>All</item>
+        <item>Schools</item>
+        <item>Others</item>
     </string-array>
+
+    <string name="all">All</string>
+    <string name="schoola">Schools</string>
+    <string name="othrs">Others</string>
+
+    <string name="ADD">add</string>
 
     <string name="tipus_estudis_hint">Tipo de estudios</string>
     <string name="button_create_school">CREAR ESCUELA</string>
@@ -81,14 +91,19 @@
     <string name="show_list">Show list</string>
     <string name="provinces">Provinces</string>
     <string name="show_map">Show map</string>
+    <string name="Infantil">infantile</string>
+    <string name="Primaria">primary</string>
+    <string name="Batxillerato">Batxillerat</string>
+    <string name="ESO">ESO</string>
+    <string name="FP">FP</string>
+    <string name="UNI">University</string>
 
     <string name="tipus_estudis_title">Courses</string>
-    <string name="uni">Universidad</string>
-    <string name="FP">FP</string>
-    <string name="batx">Bachillerato</string>
+    <string name="uni">University</string>
+    <string name="batx">Batxillerat</string>
     <string name="eso">ESO</string>
-    <string name="infantil">Infantil</string>
-    <string name="primaria">Prmaria</string>
+    <string name="infantil">infantile</string>
+    <string name="primaria">primary</string>
     <string name="wait">Loading information. Please wait.</string>
 
 

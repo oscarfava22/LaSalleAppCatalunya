@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,22 +31,23 @@ public class ActivityDescription extends AppCompatActivity {
         TextView tipusestudisLlista = (TextView) findViewById(R.id.text_view_tipus_estudis_activityDescription);
         String llistat = "";
         if(centreEscolar.isEsUni()){
-            llistat.concat("HARDCODED UNIVERSITAT").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.uni)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsFP()){
-            llistat.concat("HARDCODED FP").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.FP)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsBatx()){
-            llistat.concat("HARDCODED BATXILLERAT").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.batx)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsESO()){
-            llistat.concat("HARDCODED ESO").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.ESO)).concat(System.lineSeparator());
+            Log.d("CHECK", "ESO");
         }
         if(centreEscolar.isEsPrimaria()){
-            llistat.concat("HARDCODED PRIMARIA").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.primaria)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsInfantil()){
-            llistat.concat("HARDCODED INFANTIL").concat(System.lineSeparator());
+            llistat.concat(getString(R.string.infantil)).concat(System.lineSeparator());
         }
         tipusestudisLlista.setText(llistat);
 

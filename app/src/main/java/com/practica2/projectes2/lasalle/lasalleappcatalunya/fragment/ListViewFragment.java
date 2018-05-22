@@ -9,39 +9,64 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
-import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnItemClick;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnTouch;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
 import java.util.ArrayList;
 
 public class ListViewFragment extends Fragment{
+
     private ListView listView;
-    private String tipus; //cargar solo los elementos deseados
     private ArrayList<CentreEscolar> cityAllArrayList;
     private ArrayList<CentreEscolar> filteredArraylist;
-    private MyListViewAdapterWithOnItemClick adapter;
+    private MyListViewAdapterWithOnTouch adapter;
     private ArrayList<String> options; //conte totes les opcions de l'array
+    private String estudis;
 
     public ListViewFragment() {
         options = new ArrayList<>();
-        options.add("Barcelona");
-        options.add("Girona");
-        options.add("Lleida");
-        options.add("Tarragona");
+        filteredArraylist = new ArrayList<>();
     }
 
-    public void setDataArray(ArrayList<CentreEscolar> cityArrayList) {
-        this.filteredArraylist = cityArrayList;
-        if(adapter != null){
-            adapter.notifyDataSetChanged();
+    public void setDataArray(ArrayList<CentreEscolar> cityArrayList, String estudis) {
+        this.cityAllArrayList = cityArrayList;
+        this.estudis = estudis;
+    }
+
+    public  void filterByType(){
+        //TODO call this function
+        if(filteredArraylist != null && options.size() != 0){
+            if(filteredArraylist.size() != 0) {
+                if (estudis.equals(getActivity().getString(R.string.othrs))) {
+                    for (CentreEscolar centreEscolar : filteredArraylist) {
+                        if (centreEscolar.isEsPrimaria() || centreEscolar.isEsESO() || centreEscolar.isEsInfantil()) {
+                            filteredArraylist.remove(centreEscolar);
+                        }
+                    }
+                } else if (estudis.equals(getActivity().getString(R.string.all))) {
+                    //do nothing
+                } else if (estudis.equals(getActivity().getString(R.string.schoola))) {
+                    for (CentreEscolar centreEscolar : filteredArraylist) {
+                        if (centreEscolar.isEsFP() || centreEscolar.isEsUni() || centreEscolar.isEsBatx()) {
+                            filteredArraylist.remove(centreEscolar);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
     public void setFilteredListView(int option){ //0 = Barcelona,etc.
-        filteredArraylist.clear();
-        for (CentreEscolar centreEscolar: cityAllArrayList) {
-            if(centreEscolar.getProvincia().equals(options.get(option))){
-                filteredArraylist.add(centreEscolar);
+        if(cityAllArrayList != null && options.size() != 0){
+            if(cityAllArrayList.size() != 0){
+                filteredArraylist.clear();
+                for (int i = 0; i < cityAllArrayList.size(); i++) {
+                    if(cityAllArrayList.get(i).getProvincia().equals(options.get(option))){
+                        filteredArraylist.add(cityAllArrayList.get(i));
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         }
     }
@@ -49,7 +74,11 @@ public class ListViewFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        adapter.notifyDataSetChanged();
+        //keep this order for the 6 instructions under
+        options.add(getActivity().getString(R.string.barcelona));
+        options.add(getActivity().getString(R.string.girona));
+        options.add(getActivity().getString(R.string.lleida));
+        options.add(getActivity().getString(R.string.tarragona));
     }
 
     @Nullable
@@ -59,13 +88,12 @@ public class ListViewFragment extends Fragment{
 
         listView = view.findViewById(R.id.listview);
 
-        filteredArraylist = new ArrayList<>();
-
-        adapter = new MyListViewAdapterWithOnItemClick(getActivity(), filteredArraylist);
+        adapter = new MyListViewAdapterWithOnTouch(filteredArraylist, getActivity(),null, listView);
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(adapter);
+        listView.setOnTouchListener(adapter);
+
 
         return view;
     }

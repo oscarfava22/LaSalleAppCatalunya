@@ -1,6 +1,7 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,10 @@ public class PantallaDeCentres extends AppCompatActivity {
     private ListViewFragment tots;
     private ListViewFragment escoles;
     private ListViewFragment altres;
+    private Spinner spinner;
+    private ArrayList<CentreEscolar> escolesList;
+    private static final String SCHOOLS = "schoolKey";
+    private static final String CENTERS = "centers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,11 @@ public class PantallaDeCentres extends AppCompatActivity {
         setTitle(null);
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
-        createTabs();
+        if(savedInstanceState == null){
+            escolesList = getIntent().getExtras().getParcelableArrayList(CENTERS);
+            //TODO test
+            createTabs();
+        }
     }
 
     private void createToolbar() {
@@ -46,10 +55,9 @@ public class PantallaDeCentres extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_pantalladecentres, menu);
 
-        MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) item.getActionView();
+        spinner =  findViewById(R.id.spinner);
 
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter();
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(tots,escoles,altres);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.provincies_array, android.R.layout.simple_spinner_item);
@@ -82,36 +90,46 @@ public class PantallaDeCentres extends AppCompatActivity {
                 return false;
         }
         return true;
-        //TODO cuando pulsa una provincia...
     }
 
     private void createTabs(){
         TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.viewPager);
+
         //creating the arrays to be registered in the tabEntry
         tots = new ListViewFragment();
         altres = new ListViewFragment();
         escoles = new ListViewFragment();
 
-        /* No puedes poner las arrays porque no esta la vista creada.
-         //TODO temporal array
-        ArrayList<CentreEscolar> centreEscolarsTemporal = new ArrayList<>();
-        centreEscolarsTemporal.add(new CentreEscolar("aa","aa","bb","bb"));
-        //TODO al listview deberias pasar el array de info o algo
-        tots.setDataArray(centreEscolarsTemporal);
-        altres.setDataArray(centreEscolarsTemporal);
-        escoles.setDataArray(centreEscolarsTemporal);
-         */
+        tots.setDataArray(escolesList, getString(R.string.all));
+        altres.setDataArray(escolesList,getString(R.string.othrs));
+        escoles.setDataArray(escolesList,getString(R.string.schoola));
+        //TODO al listview deberias pasar el array de info
+
 
         //creating all the entries
         ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
         entries.add(new TabAdapter.TabEntry(tots, getString(R.string.All)));
-        //TODO cargar dadas en todos los fragmentos (las listas)
         entries.add(new TabAdapter.TabEntry(escoles, getString(R.string.IPE)));
         entries.add(new TabAdapter.TabEntry(altres, getString(R.string.BFU)));
 
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager(), entries);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        outState.putParcelableArrayList(SCHOOLS, escolesList);
+        super.onSaveInstanceState(outState, outPersistentState);
+        //TODO no se carga bien!!
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.escolesList = savedInstanceState.getParcelableArrayList(SCHOOLS);
+        createTabs();
     }
 }

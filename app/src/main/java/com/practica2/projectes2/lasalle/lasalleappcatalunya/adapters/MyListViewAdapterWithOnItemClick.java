@@ -13,6 +13,9 @@ import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
 import java.util.List;
 
+/*
+    Class not used. Do not delete in case it is needed.
+ */
 public class MyListViewAdapterWithOnItemClick extends BaseAdapter implements AdapterView.OnItemClickListener {
     private List<CentreEscolar> data;
     private Context context;

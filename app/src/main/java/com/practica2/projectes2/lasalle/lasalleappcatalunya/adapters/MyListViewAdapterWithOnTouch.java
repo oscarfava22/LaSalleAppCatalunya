@@ -2,6 +2,8 @@ package com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.activities.ActivityDescription;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.activities.PantallaDeCentres;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 
 import java.util.ArrayList;
@@ -61,17 +65,39 @@ public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.On
         } else {
             view = convertView;
         }
+        //TODO porque viene con una posicion incorrecta?
+        if((data != null) && (data.size() != 0) && (data.size() - 1 >= position)) {
+            TextView text1 = view.findViewById(R.id.nom_escola_item);
 
-        TextView text1 = view.findViewById(R.id.nom_escola_item);
-        text1.setText(data.get(position).getNomEscola());
+            if(data.get(position) != null){
+                text1.setText(data.get(position).getNomEscola());
+            }
 
-        TextView text2 = view.findViewById(R.id.adresa_escola_item);
-        text2.setText(data.get(position).getAdresaEscola());
+            TextView text2 = view.findViewById(R.id.adresa_escola_item);
+            if(data.get(position) != null){
+                text2.setText(data.get(position).getAdresaEscola());
+            }
 
-        TextView text3 = view.findViewById(R.id.estudis_impartits_item);
-        //COMENTAT GUILLE
-        //text3.setText(data.get(position).getEstudisImpartits());
+            TextView text3 = view.findViewById(R.id.estudis_impartits_item);
+            if(data.get(position) != null){
+                if (data.get(position).isEsBatx()) {
+                    text3.setText(context.getString(R.string.Batxillerato));
+                } else if (data.get(position).isEsESO()) {
+                    text3.setText(context.getString(R.string.ESO));
+                } else if (data.get(position).isEsFP()) {
+                    text3.setText(context.getString(R.string.FP));
+                } else if (data.get(position).isEsInfantil()) {
+                    text3.setText(context.getString(R.string.Infantil));
+                } else if (data.get(position).isEsPrimaria()) {
+                    text3.setText(context.getString(R.string.Primaria));
+                } else if (data.get(position).isEsUni()) {
+                    text3.setText(context.getString(R.string.UNI));
+                }else{
+                    text3.setText("An error ocurred");
+                }
+            }
 
+        }
         return view;
     }
 
@@ -102,9 +128,16 @@ public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.On
         builder.create().show();
     }
 
-    public void click(){
-           //TODO enviar a la info
+
+    public void click(final int pos){
+        //TODO enviar a la info
+        if(-1 != pos){
+            Intent intent = new Intent(context, ActivityDescription.class);
+            CentreEscolar aux = data.get(pos);
+            intent.putExtra("lastCenterClicked", data.get(pos));
+            context.startActivity(intent);
         }
+    }
 
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -139,7 +172,7 @@ public class MyListViewAdapterWithOnTouch extends BaseAdapter implements View.On
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
-            click();
+            click(getPostion(e));
             return true;
         }
     }

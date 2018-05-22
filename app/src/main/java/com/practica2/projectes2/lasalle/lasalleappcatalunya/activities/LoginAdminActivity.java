@@ -28,6 +28,7 @@ import java.util.Arrays;
 public class LoginAdminActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
+    private static final String ACTIVITY_ADD = "ActivitAdd";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Intent intent = new Intent(LoginAdminActivity.this, CreateNewCenter.class);
+                        intent.putExtra(ACTIVITY_ADD,"loginAdminActivity");
                         startActivity(intent);
                         LoginManager.getInstance().logOut(); //Tanquem la sessió per major seguretat.
                         Log.d("success", "Success");

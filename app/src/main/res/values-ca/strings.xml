@@ -31,6 +31,8 @@
     <string name="school_address_hint">Adreça de l\'escola</string>
     <string name="title_provincia">Província de l\'escola</string>
 
+    <string name="ADD">afegir</string>
+
     <string-array name="provincies_array">
         <item>barcelona</item>
         <item>girona</item>
@@ -46,6 +48,17 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
-
+    <string name="Infantil">infantil</string>
+    <string name="Primaria">primaria</string>
+    <string name="Batxillerato">Batxillerat</string>
+    <string name="ESO">ESO</string>
+    <string name="FP">FP</string>
+    <string name="UNI">Universitat</string>
+    <string name="tipus_estudis_title">Cursos</string>
+    <string name="uni">Universitat</string>
+    <string name="batx">Batxillerat</string>
+    <string name="eso">ESO</string>
+    <string name="infantil">infantil</string>
+    <string name="primaria">primaria</string>
 
 </resources>

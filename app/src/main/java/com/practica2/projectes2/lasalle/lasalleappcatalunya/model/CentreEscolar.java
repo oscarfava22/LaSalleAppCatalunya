@@ -115,6 +115,22 @@ public class CentreEscolar implements Comparable, Parcelable {
         return provincia;
     }
 
+    protected CentreEscolar(Parcel in) {
+        nomEscola = in.readString();
+        adresaEscola = in.readString();
+        esInfantil = in.readByte() != 0x00;
+        esPrimaria = in.readByte() != 0x00;
+        esESO = in.readByte() != 0x00;
+        esBatx = in.readByte() != 0x00;
+        esFP = in.readByte() != 0x00;
+        esUni = in.readByte() != 0x00;
+        descripcio = in.readString();
+        id = in.readInt();
+        provincia = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -124,23 +140,32 @@ public class CentreEscolar implements Comparable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nomEscola);
         dest.writeString(adresaEscola);
+        dest.writeByte((byte) (esInfantil ? 0x01 : 0x00));
+        dest.writeByte((byte) (esPrimaria ? 0x01 : 0x00));
+        dest.writeByte((byte) (esESO ? 0x01 : 0x00));
+        dest.writeByte((byte) (esBatx ? 0x01 : 0x00));
+        dest.writeByte((byte) (esFP ? 0x01 : 0x00));
+        dest.writeByte((byte) (esUni ? 0x01 : 0x00));
+        dest.writeString(descripcio);
+        dest.writeInt(id);
+        dest.writeString(provincia);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
     }
 
-    private CentreEscolar(Parcel in) {
-        nomEscola = in.readString();
-        adresaEscola = in.readString();
-
-    }
-
+    @SuppressWarnings("unused")
     public static final Parcelable.Creator<CentreEscolar> CREATOR = new Parcelable.Creator<CentreEscolar>() {
+        @Override
         public CentreEscolar createFromParcel(Parcel in) {
             return new CentreEscolar(in);
         }
 
+        @Override
         public CentreEscolar[] newArray(int size) {
             return new CentreEscolar[size];
         }
     };
+
     @Override
     public int hashCode() {
         int result = nomEscola != null ? nomEscola.hashCode() : 0;
