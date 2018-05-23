@@ -97,23 +97,18 @@ public class HttpRequestHelper {
                 postDataParams.put("description", description);
 
                 connection = (HttpURLConnection) u.openConnection();
-                connection.setRequestMethod(method);
                 connection.setConnectTimeout(CONNECTION_TIMEOUT);
                 connection.setReadTimeout(READ_TIMEOUT);
-                //?
-                //connection.setRequestProperty("Content-length", "0");
-                /*connection.setRequestProperty("method", "addSchool");
+
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("method", "addSchool");
                 connection.setRequestProperty("name", name);
                 connection.setRequestProperty("address", province);
                 connection.setRequestProperty("province", province);
                 connection.setRequestProperty("type", auxType);
-                connection.setRequestProperty("description", description);*/
-                connection.setRequestMethod("POST");
+                connection.setRequestProperty("description", description);
+
                 connection.setDoOutput(true);
-                connection.setDoInput(true);
-                connection.setUseCaches(false);
-                connection.setAllowUserInteraction(false);
-                //connection.connect();
 
                 OutputStream os = connection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(
@@ -123,7 +118,6 @@ public class HttpRequestHelper {
                 writer.flush();
                 writer.close();
                 os.close();
-
 
                 int status = connection.getResponseCode();
 
@@ -159,15 +153,6 @@ public class HttpRequestHelper {
     }
 
 
-    public Bitmap doHttpRequestForBitmap (String imageUrl) throws IOException {
-        URL url = new URL(imageUrl);
-        HttpURLConnection connection  = (HttpURLConnection) url.openConnection();
-
-        InputStream is = connection.getInputStream();
-        Bitmap img = BitmapFactory.decodeStream(is);
-
-        return img;
-    }
 
     public String getPostDataString(JSONObject params) throws Exception {
 
