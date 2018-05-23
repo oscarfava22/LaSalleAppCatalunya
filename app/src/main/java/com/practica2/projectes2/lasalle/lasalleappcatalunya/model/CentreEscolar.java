@@ -20,27 +20,27 @@ public class CentreEscolar implements Comparable, Parcelable {
     private double longitude;
 
     public void setEsInfantil(boolean esInfantil) {
-        type[0] = true;
+        type[0] = esInfantil;
     }
 
     public void setEsPrimaria(boolean esPrimaria) {
-        type[1] = true;
+        type[1] = esPrimaria;
     }
 
     public void setEsESO(boolean esESO) {
-        type[2] = true;
+        type[2] = esESO;
     }
 
     public void setEsBatx(boolean esBatx) {
-        type[3] = true;
+        type[3] = esBatx;
     }
 
     public void setEsFP(boolean esFP) {
-        type[4] = true;
+        type[4] = esFP;
     }
 
     public void setEsUni(boolean esUni) {
-        type[5] = true;
+        type[5] = esUni;
     }
 
     public void setDescripcio(String descripcio) {

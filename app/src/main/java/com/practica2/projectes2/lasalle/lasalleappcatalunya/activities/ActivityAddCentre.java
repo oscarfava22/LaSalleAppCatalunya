@@ -80,7 +80,7 @@ public class ActivityAddCentre extends AppCompatActivity {
             tietSchoolName.setError("Hardcoded");
         }
         if(!cbUni.isChecked() && !cbFP.isChecked() && !cbBatx.isChecked() && !cbEso.isChecked() &&
-                !cbPrimaria.isChecked() && !cbInfantil.isChecked()){
+                !cbPrimaria.isChecked() && !cbInfantil.isChecked() &&!error){
             error = true;
             AlertDialog.Builder builder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -99,7 +99,7 @@ public class ActivityAddCentre extends AppCompatActivity {
                     .show();
         }
 
-        if(!error){
+        if(!error) {
             centreEscolar.setNomEscola(tietSchoolName.getText().toString());
             centreEscolar.setProvincia(spProvincia.getSelectedItem().toString());
             centreEscolar.setAdresaEscola(tietSchoolAddress.getText().toString());
@@ -112,13 +112,14 @@ public class ActivityAddCentre extends AppCompatActivity {
             centreEscolar.setEsInfantil(cbInfantil.isChecked());
 
             afegeixEscolaAPI(centreEscolar);
-        }
 
-        Intent intent = new Intent(this, CreateNewCenter.class);
-        intent.putExtra(ERROR, error);
-        intent.putExtra(SCHOOL, centreEscolar);
-        intent.putExtra(ACTIVITY_ADD, "ComingFromActivityAdd");
-        startActivity(intent);
+
+            Intent intent = new Intent(this, CreateNewCenter.class);
+            intent.putExtra(ERROR, error);
+            intent.putExtra(SCHOOL, centreEscolar);
+            intent.putExtra(ACTIVITY_ADD, "ComingFromActivityAdd");
+            startActivity(intent);
+        }
 
     }
 
