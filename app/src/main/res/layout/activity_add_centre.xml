@@ -81,47 +81,47 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"/>
 
-        <RadioButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/uni"
-            android:id="@+id/rb_uni"/>
+            android:id="@+id/cb_uni"/>
 
-        <RadioButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/FP"
-            android:id="@+id/rb_FP"/>
+            android:id="@+id/cb_FP"/>
 
-        <RadioButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/batx"
-            android:id="@+id/rb_batx"/>
+            android:id="@+id/cb_batx"/>
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/primaria"
-            android:id="@+id/rb_primaria"/>
-
-        <RadioButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/eso"
-            android:id="@+id/rb_eso"/>
+            android:id="@+id/cb_eso"/>
 
-        <RadioButton
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/primaria"
+            android:id="@+id/cb_primaria"/>
+
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/infantil"
-            android:id="@+id/rb_infantil"/>
+            android:id="@+id/cb_infantil"/>
 
         <TextView
             android:layout_width="match_parent"

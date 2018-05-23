@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -57,12 +58,12 @@ public class ActivityAddCentre extends AppCompatActivity {
         TextInputEditText tietSchoolAddress = (TextInputEditText) findViewById(R.id.tiet_activity_add_center_school_address);
         TextInputEditText tietDescription = (TextInputEditText) findViewById(R.id.tiet_activity_add_center_school_description);
 
-        RadioButton rbUni = (RadioButton) findViewById((R.id.rb_uni));
-        RadioButton rbFP = (RadioButton) findViewById((R.id.rb_FP));
-        RadioButton rbBatx = (RadioButton) findViewById((R.id.rb_batx));
-        RadioButton rbEso = (RadioButton) findViewById((R.id.rb_eso));
-        RadioButton rbPrimaria = (RadioButton) findViewById((R.id.rb_primaria));
-        RadioButton rbInfantil = (RadioButton) findViewById((R.id.rb_infantil));
+        CheckBox cbUni = (CheckBox) findViewById((R.id.cb_uni));
+        CheckBox cbFP = (CheckBox) findViewById((R.id.cb_FP));
+        CheckBox cbBatx = (CheckBox) findViewById((R.id.cb_batx));
+        CheckBox cbEso = (CheckBox) findViewById((R.id.cb_eso));
+        CheckBox cbPrimaria = (CheckBox) findViewById((R.id.cb_primaria));
+        CheckBox cbInfantil = (CheckBox) findViewById((R.id.cb_infantil));
 
         Spinner spProvincia = (Spinner) findViewById((R.id.spinner_activity_add_center_provincia));
 
@@ -78,8 +79,8 @@ public class ActivityAddCentre extends AppCompatActivity {
             error = true;
             tietSchoolName.setError("Hardcoded");
         }
-        if(!rbUni.isChecked() && !rbFP.isChecked() && !rbBatx.isChecked() && !rbEso.isChecked() &&
-                !rbPrimaria.isChecked() && !rbInfantil.isChecked()){
+        if(!cbUni.isChecked() && !cbFP.isChecked() && !cbBatx.isChecked() && !cbEso.isChecked() &&
+                !cbPrimaria.isChecked() && !cbInfantil.isChecked()){
             error = true;
             AlertDialog.Builder builder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -103,12 +104,12 @@ public class ActivityAddCentre extends AppCompatActivity {
             centreEscolar.setProvincia(spProvincia.getSelectedItem().toString());
             centreEscolar.setAdresaEscola(tietSchoolAddress.getText().toString());
             centreEscolar.setDescripcio(tietDescription.getText().toString());
-            centreEscolar.setEsUni(rbUni.isChecked());
-            centreEscolar.setEsFP(rbFP.isChecked());
-            centreEscolar.setEsBatx(rbBatx.isChecked());
-            centreEscolar.setEsESO(rbEso.isChecked());
-            centreEscolar.setEsPrimaria(rbPrimaria.isChecked());
-            centreEscolar.setEsInfantil(rbInfantil.isChecked());
+            centreEscolar.setEsUni(cbUni.isChecked());
+            centreEscolar.setEsFP(cbFP.isChecked());
+            centreEscolar.setEsBatx(cbBatx.isChecked());
+            centreEscolar.setEsESO(cbEso.isChecked());
+            centreEscolar.setEsPrimaria(cbPrimaria.isChecked());
+            centreEscolar.setEsInfantil(cbInfantil.isChecked());
 
             afegeixEscolaAPI(centreEscolar);
         }
