@@ -131,7 +131,7 @@ public class HttpRequestHelper {
                 switch (status) {
                     case HttpURLConnection.HTTP_OK:
                     case HttpURLConnection.HTTP_CREATED:
-   /*                     BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                         StringBuilder sb = new StringBuilder();
                         String line;
                         while ((line = br.readLine()) != null) {
@@ -139,7 +139,7 @@ public class HttpRequestHelper {
                         }
                         br.close();
 
-                        jsonObject = new JSONObject(sb.toString()); */
+                        jsonObject = new JSONObject(sb.toString());
                 }
 
             } catch (Exception ex) {

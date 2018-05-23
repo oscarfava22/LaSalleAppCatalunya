@@ -12,12 +12,7 @@ public class CentreEscolar implements Comparable, Parcelable {
 
     private String nomEscola;
     private String adresaEscola;
-    private boolean esInfantil;
-    private boolean esPrimaria;
-    private boolean esESO;
-    private boolean esBatx;
-    private boolean esFP;
-    private boolean esUni;
+    private boolean[] type = new boolean[6];
     private String descripcio;
     private int id;
     private String provincia;
@@ -25,27 +20,27 @@ public class CentreEscolar implements Comparable, Parcelable {
     private double longitude;
 
     public void setEsInfantil(boolean esInfantil) {
-        this.esInfantil = esInfantil;
+        type[0] = true;
     }
 
     public void setEsPrimaria(boolean esPrimaria) {
-        this.esPrimaria = esPrimaria;
+        type[1] = true;
     }
 
     public void setEsESO(boolean esESO) {
-        this.esESO = esESO;
+        type[2] = true;
     }
 
     public void setEsBatx(boolean esBatx) {
-        this.esBatx = esBatx;
+        type[3] = true;
     }
 
     public void setEsFP(boolean esFP) {
-        this.esFP = esFP;
+        type[4] = true;
     }
 
     public void setEsUni(boolean esUni) {
-        this.esUni = esUni;
+        type[5] = true;
     }
 
     public void setDescripcio(String descripcio) {
@@ -80,27 +75,28 @@ public class CentreEscolar implements Comparable, Parcelable {
     }
 
     public boolean isEsInfantil() {
-        return esInfantil;
+        return type[0];
     }
 
     public boolean isEsPrimaria() {
-        return esPrimaria;
+        return type[1];
     }
 
     public boolean isEsESO() {
-        return esESO;
+        return type[2];
+
     }
 
     public boolean isEsBatx() {
-        return esBatx;
+        return type[3];
     }
 
     public boolean isEsFP() {
-        return esFP;
+        return type[4];
     }
 
     public boolean isEsUni() {
-        return esUni;
+        return type[5];
     }
 
     public String getDescripcio() {
@@ -118,12 +114,7 @@ public class CentreEscolar implements Comparable, Parcelable {
     protected CentreEscolar(Parcel in) {
         nomEscola = in.readString();
         adresaEscola = in.readString();
-        esInfantil = in.readByte() != 0x00;
-        esPrimaria = in.readByte() != 0x00;
-        esESO = in.readByte() != 0x00;
-        esBatx = in.readByte() != 0x00;
-        esFP = in.readByte() != 0x00;
-        esUni = in.readByte() != 0x00;
+        type = in.createBooleanArray();
         descripcio = in.readString();
         id = in.readInt();
         provincia = in.readString();
@@ -140,12 +131,7 @@ public class CentreEscolar implements Comparable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nomEscola);
         dest.writeString(adresaEscola);
-        dest.writeByte((byte) (esInfantil ? 0x01 : 0x00));
-        dest.writeByte((byte) (esPrimaria ? 0x01 : 0x00));
-        dest.writeByte((byte) (esESO ? 0x01 : 0x00));
-        dest.writeByte((byte) (esBatx ? 0x01 : 0x00));
-        dest.writeByte((byte) (esFP ? 0x01 : 0x00));
-        dest.writeByte((byte) (esUni ? 0x01 : 0x00));
+        dest.writeBooleanArray(type);
         dest.writeString(descripcio);
         dest.writeInt(id);
         dest.writeString(provincia);
@@ -207,17 +193,17 @@ public class CentreEscolar implements Comparable, Parcelable {
 
 
     public float getColor() {
-        if (esUni) {
+        if (type[5]) {
             return BitmapDescriptorFactory.HUE_BLUE;
-        } else if (esBatx) {
+        } else if (type[4]) {
             return BitmapDescriptorFactory.HUE_MAGENTA;
-        } else if (esFP){
+        } else if (type[3]){
              return BitmapDescriptorFactory.HUE_GREEN;
-        } else if (esESO) {
+        } else if (type[2]) {
             return BitmapDescriptorFactory.HUE_ORANGE;
-        } else if (esPrimaria) {
+        } else if (type[1]) {
             return BitmapDescriptorFactory.HUE_YELLOW;
-        } else if (esInfantil) {
+        } else if (type[0]) {
             return BitmapDescriptorFactory.HUE_VIOLET;
         }
          return BitmapDescriptorFactory.HUE_ROSE;
