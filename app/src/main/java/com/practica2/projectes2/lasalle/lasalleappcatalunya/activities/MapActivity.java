@@ -76,6 +76,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         firstTime = true;
         requestShowing = false;
 
+        Spinner spinner = findViewById(R.id.spinner_map);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.school_groups, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(this);
+
+        spinner.setSelection(spinnerState);
+
         LinearLayout layoutBottomSheet = findViewById(R.id.bottom_sheet);
 
         layoutBottomSheet.setOnClickListener(new View.OnClickListener() {
@@ -118,17 +128,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_map_activity, menu);
-
-        MenuItem item = menu.findItem(R.id.spinner_map);
-        Spinner spinner = (Spinner) item.getActionView();
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.school_groups, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(this);
-
-        spinner.setSelection(spinnerState);
         return true;
     }
 
