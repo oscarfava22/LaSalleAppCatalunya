@@ -1,4 +1,4 @@
-package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
+package com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters;
 
 import android.view.View;
 import android.widget.AdapterView;

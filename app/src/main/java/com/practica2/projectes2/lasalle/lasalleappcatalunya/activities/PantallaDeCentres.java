@@ -15,6 +15,7 @@ import android.widget.Spinner;
 
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.SpinnerAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.TabAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.fragment.ListViewFragment;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
@@ -38,7 +39,7 @@ public class PantallaDeCentres extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
         if(savedInstanceState == null){
-            escolesList = getIntent().getExtras().getParcelableArrayList(CENTERS);
+            //escolesList = getIntent().getExtras().getParcelableArrayList(CENTERS);
             //TODO test
             createTabs();
         }
@@ -101,11 +102,27 @@ public class PantallaDeCentres extends AppCompatActivity {
         altres = new ListViewFragment();
         escoles = new ListViewFragment();
 
+           escolesList = new ArrayList<>();
+        CentreEscolar aaa = new CentreEscolar();
+        aaa.setAdresaEscola("aa");
+        aaa.setProvincia("Barcelona");
+        aaa.setEsInfantil(true);
+        escolesList.add(aaa);
+        CentreEscolar bbb = new CentreEscolar();
+        bbb.setAdresaEscola("hereIm");
+        bbb.setProvincia("Tarragona");
+        bbb.setEsFP(true);
+        escolesList.add(bbb);
+        CentreEscolar ccc = new CentreEscolar();
+        ccc.setAdresaEscola("aa");
+        ccc.setProvincia("Lleida");
+        ccc.setEsESO(true);
+        escolesList.add(ccc);
+
+
         tots.setDataArray(escolesList, getString(R.string.all));
         altres.setDataArray(escolesList,getString(R.string.othrs));
         escoles.setDataArray(escolesList,getString(R.string.schoola));
-        //TODO al listview deberias pasar el array de info
-
 
         //creating all the entries
         ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
@@ -122,8 +139,6 @@ public class PantallaDeCentres extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         outState.putParcelableArrayList(SCHOOLS, escolesList);
         super.onSaveInstanceState(outState, outPersistentState);
-        //TODO no se carga bien!!
-
     }
 
     @Override

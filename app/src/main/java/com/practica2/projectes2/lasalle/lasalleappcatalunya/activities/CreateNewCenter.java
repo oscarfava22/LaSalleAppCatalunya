@@ -123,7 +123,6 @@ public class CreateNewCenter extends AppCompatActivity {
             return true;
         }
         if(id == R.id.logout){
-            //TODO where?
             onStop();
             adapter.notifyDataSetChanged();
             return true;

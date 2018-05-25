@@ -19,17 +19,17 @@
             android:name=".activities.CreateNewCenter"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".activities.LoginAdminActivity"
             android:label="@string/loginAdmin"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
@@ -57,7 +57,6 @@
         <activity
             android:name=".activities.PantallaDeCentres"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
 
         <activity

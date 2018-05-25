@@ -34,7 +34,6 @@ public class ListViewFragment extends Fragment{
     }
 
     public  void filterByType(){
-        //TODO call this function
         if(filteredArraylist != null && options.size() != 0){
             if(filteredArraylist.size() != 0) {
                 if (estudis.equals(getActivity().getString(R.string.othrs))) {
@@ -67,6 +66,7 @@ public class ListViewFragment extends Fragment{
                     }
                 }
                 adapter.notifyDataSetChanged();
+                filterByType();
             }
         }
     }
