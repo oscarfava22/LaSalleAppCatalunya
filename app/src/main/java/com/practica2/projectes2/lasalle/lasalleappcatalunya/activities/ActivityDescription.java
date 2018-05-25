@@ -31,23 +31,26 @@ public class ActivityDescription extends AppCompatActivity {
         TextView tipusestudisLlista = (TextView) findViewById(R.id.text_view_tipus_estudis_activityDescription);
         String llistat = "";
         if(centreEscolar.isEsUni()){
-            llistat.concat(getString(R.string.uni)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.uni)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsFP()){
-            llistat.concat(getString(R.string.FP)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.FP)).concat(System.lineSeparator());
+
+            Log.d("CHECK", "FP");
         }
         if(centreEscolar.isEsBatx()){
-            llistat.concat(getString(R.string.batx)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.batx)).concat(System.lineSeparator());
+            Log.d("CHECK", "BATX");
         }
         if(centreEscolar.isEsESO()){
-            llistat.concat(getString(R.string.ESO)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.ESO)).concat(System.lineSeparator());
             Log.d("CHECK", "ESO");
         }
         if(centreEscolar.isEsPrimaria()){
-            llistat.concat(getString(R.string.primaria)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.primaria)).concat(System.lineSeparator());
         }
         if(centreEscolar.isEsInfantil()){
-            llistat.concat(getString(R.string.infantil)).concat(System.lineSeparator());
+            llistat = llistat.concat(getString(R.string.infantil)).concat(System.lineSeparator());
         }
         tipusestudisLlista.setText(llistat);
 
