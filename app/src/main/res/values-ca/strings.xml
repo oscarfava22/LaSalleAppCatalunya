@@ -9,22 +9,41 @@
     <string name="realName">Primer cognom</string>
     <string name="surname">Segon cognom</string>
     <string name="email">Correu Electrònic</string>
+
     <string name="password">Contrassenya</string>
     <string name="confirmPassword">Confirmar Contrassenya</string>
     <string name="register">Registrar-se</string>
     <string name="errorEmail">Escriu el email correctament,si us plau</string>
+
     <string name="errorName">Escriu el teu nom</string>
     <string name="errorSurname">Escriu el teu cognom</string>
     <string name="errorPass">Escriu la teva contrassenya</string>
+
     <string name="errorConfirmPass">La contrasenya no coincideix</string>
     <string name="errorUsername">Escriu el nom d\'usuari</string>
     <string name="loginAdmin">Login per Adminstradors</string>
+
     <string name="usernameOrEmail">Nom d\'usuari o Email</string>
-    <string name="login">INICIAR SESSIÓ</string>
+    <string name="login">Iniciar Sessió</string>
+
+    <string name="or">o</string>
+
+    <string name="loginFacebook">INICIAR SESIÓ AMB FACEBOOK</string>
+    <string name="loginTwitter">INICIAR SESIÓ AMB TWITTER</string>
+    <string name="loginGoogle">INICIAR SESIÓ AMB GOOGLE</string>
+    <string name="facebook_app_id">195448987919270</string>
+    <string name="fb_login_protocol_scheme">fb195448987919270</string>
+    <string name="orderASC">ordenar alfabeticament</string>
+    <string name="logout">sortir</string>
+    <string name="TitleDialogDelete">Vols borrar el centre?</string>
+    <string name="TitleDialogInsert">Vols afegir un nou centre?</string>
+    <string name="AcceptToDelete">Borrar </string>
+    <string name="Delete">Borrar</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="title_activity_main">Pantalla Principal</string>
+    <string name="deleteSure">Segur que vols borrar el centre?</string>
 
     <string name="nom_escola">Nom escola</string>
-    <string name="adreça_test">Carrer Test, n 1024, 100110 BCN</string>
-    <string name="tipus_estudis_test">Només informàtica a modo test</string>
     <string name="titol_descripcio">Descripció</string>
     <string name="title_add_new_centre">Afegir una nova escola</string>
     <string name="school_name_hint">Nom de l\'escola</string>
@@ -51,10 +70,33 @@
     <string name="tipus_estudis_hint">Tipus d\'estudis</string>
     <string name="button_create_school">CREA ESCOLA</string>
 
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string-array name="school_groups">
+        <item>tots</item>
+        <item>escoles</item>
+        <item>altres</item>
+    </string-array>
+
+
+    <string name="all">tot</string>
+    <string name="schoola">escoles</string>
+    <string name="othrs">altres</string>
+
+    <string name="login_error">Nom d\'usuari o contrassenya incorrecta</string>
+    <string name="cancel_error">Acces cancelat</string>
+    <string name="login_dialog_error">Alguna cosa ha fallat al començar la sessió. Siusplau, torna a intentar-ho</string>
+    <string name="register_error">Aquest usuari ja existeix.Siusplau, tria un altre.</string>
+    <string name="title_activity_map">Mapa</string>
+
+    <string name="permission_denied">Permisos denegats</string>
+    <string name="permission_denied_explanation">Sense permisos l\'app no pot accedir a la teva localització. Estas segur que vols denegar el permís?</string>
+    <string name="sure">Estic segur</string>
+    <string name="retry">tornar a intentar</string>
+    <string name="acces_login">Autenticació</string>
+    <string name="show_list">mostrar llista</string>
+    <string name="provinces">Provincias</string>
+    <string name="show_map">mostrar mapa</string>
+
 
     <string name="Infantil">infantil</string>
     <string name="Primaria">primaria</string>
@@ -67,6 +109,8 @@
     <string name="batx">Batxillerat</string>
     <string name="eso">ESO</string>
     <string name="infantil">infantil</string>
-    <string name="primaria">primaria</string>
+    <string name="primaria">primary</string>
+    <string name="wait">Cargant informació. Siusplau, espera.</string>
+
 
 </resources>
