@@ -193,20 +193,7 @@ public class ActivityAddCentre extends AppCompatActivity {
             if(done == 0){
                 /*Toast.makeText(this.context, getString(R.string.errorAdd),
                         Toast.LENGTH_LONG).show();*/
-                AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new AlertDialog.Builder(context);
-                }
-                builder.setTitle(getString(R.string.errorTitle))
-                        .setMessage(getString(R.string.errorAdd))
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
+                //TODO: Mostrar dialog a lallista
             }
             else{
                 Toast.makeText(this.context, getString(R.string.successfulInsertion),
