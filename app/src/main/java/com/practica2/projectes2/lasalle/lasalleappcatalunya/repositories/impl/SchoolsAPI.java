@@ -80,7 +80,6 @@ public class SchoolsAPI implements SchoolsRepository {
     @Override
     public int addSchool(String schoolName, String address, String province, String[] type, String description) {
         int done = 0;
-        //TODO: Arreglar URL
         JSONObject json = HttpRequestHelper.getInstance().doHttpRequest(URL, METHOD_POST, schoolName, address, province, type, description);
         try{
             done = json.getInt(RES);

@@ -85,7 +85,7 @@ public class HttpRequestHelper {
         if (method.equals("POST")){
             String auxType = type[0].concat(type[1]).concat(type[2]).concat(type[3]).concat(type[4]).concat(type[5]);
             try {
-                URL u = new URL(url);
+                URL u = new URL(url+"jjj");
 
                 JSONObject postDataParams = new JSONObject();
 
