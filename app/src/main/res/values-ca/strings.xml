@@ -108,8 +108,8 @@
     <string name="uni">Universitat</string>
     <string name="batx">Batxillerat</string>
     <string name="eso">ESO</string>
-    <string name="infantil">infantil</string>
-    <string name="primaria">primary</string>
+    <string name="infantil">Elementary</string>
+    <string name="primaria">Primary</string>
     <string name="wait">Cargant informació. Siusplau, espera.</string>
 
 
