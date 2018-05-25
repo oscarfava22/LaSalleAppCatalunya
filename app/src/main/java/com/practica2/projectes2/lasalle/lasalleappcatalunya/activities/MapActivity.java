@@ -55,7 +55,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private boolean firstTime;
     private boolean requestShowing;
     private int spinnerState = 0;
-    private AsyncRequest asyncRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,22 +154,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onStop() {
         super.onStop();
-        if (asyncRequest != null) asyncRequest.cancel(true);
+       // if (asyncRequest != null) asyncRequest.cancel(true);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (asyncRequest != null) {
-            asyncRequest.cancelDialog();
-            asyncRequest.cancel(true);
-        }
+      //  if (asyncRequest != null) {
+      //      asyncRequest.cancelDialog();
+       //     asyncRequest.cancel(true);
+        //}
     }
 
     @Override
     protected void onDestroy() {
-        asyncRequest.context = null;
-        asyncRequest = null;
+      //  asyncRequest.context = null;
+      //  asyncRequest = null;
         super.onDestroy();
     }
 
@@ -223,8 +222,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.moveCamera(cameraUpdate);
 
         //Sol·licitar centres al Web Service.
-        asyncRequest = new AsyncRequest(this);
-        asyncRequest.execute();
+    //    asyncRequest = new AsyncRequest(this);
+      //  asyncRequest.execute();
 
     }
 
@@ -295,81 +294,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    private class AsyncRequest extends AsyncTask<String, Void, ArrayList<CentreEscolar>> {
-
-        private Context context;
-        private ProgressDialog progressDialog;
-
-        protected AsyncRequest(Context context) {
-            this.context = context;
-            progressDialog = new ProgressDialog(context);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog.setMessage(getString(R.string.wait));
-            progressDialog.show();
-        }
-
-        @Override
-        protected ArrayList<CentreEscolar> doInBackground(String... params) {
-            return schoolsRepo.getSchools();
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<CentreEscolar> aList) {
-            super.onPostExecute(aList);
-
-            if (progressDialog != null && progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            centers = aList;
-            if (centers != null) {
-                for (int i = 0; i < centers.size(); i++) {
-                    new AsyncCoordinatesRequest(centers.get(i), i).execute();
-                }
-            }
-
-        }
-
-        public void cancelDialog () {
-            if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            cancelDialog();
-        }
-    }
-
-    private class AsyncCoordinatesRequest extends AsyncTask<Void, Void, CentreEscolar> {
-
-        private CentreEscolar centreEscolar;
-        private int index;
-
-        public AsyncCoordinatesRequest(CentreEscolar centreEscolar, int index) {
-            this.centreEscolar = centreEscolar;
-            this.index = index;
-        }
-
-        @Override
-        protected CentreEscolar doInBackground(Void... voids) {
-            return schoolsRepo.establirLocation(centreEscolar);
-        }
-
-        @Override
-        protected void onPostExecute(CentreEscolar centreEscolar) {
-
-                LatLng posicio = new LatLng(centreEscolar.getLatitude(), centreEscolar.getLongitude());
-                Marker marker = mMap.addMarker(new MarkerOptions().position(posicio).icon(BitmapDescriptorFactory.defaultMarker(centreEscolar.getColor())));
-                marker.setTag(index);
-                centersMarkers.add(marker);
-
-        }
     }
 
     public void deleteAllCenters () {

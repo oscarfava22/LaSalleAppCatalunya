@@ -19,11 +19,6 @@
             android:name=".activities.CreateNewCenter"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity

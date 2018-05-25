@@ -22,10 +22,13 @@ public class ListViewFragment extends Fragment{
     private MyListViewAdapterWithOnTouch adapter;
     private ArrayList<String> options; //conte totes les opcions de l'array
     private String estudis;
+    private int currentOption;
+
 
     public ListViewFragment() {
-        options = new ArrayList<>();
         filteredArraylist = new ArrayList<>();
+        options = new ArrayList<>();
+        currentOption = 0;
     }
 
     public void setDataArray(ArrayList<CentreEscolar> cityArrayList, String estudis) {
@@ -37,17 +40,24 @@ public class ListViewFragment extends Fragment{
         if(filteredArraylist != null && options.size() != 0){
             if(filteredArraylist.size() != 0) {
                 if (estudis.equals(getActivity().getString(R.string.othrs))) {
-                    for (CentreEscolar centreEscolar : filteredArraylist) {
-                        if (centreEscolar.isEsPrimaria() || centreEscolar.isEsESO() || centreEscolar.isEsInfantil()) {
-                            filteredArraylist.remove(centreEscolar);
+                    int i = 0;
+                    while (i < filteredArraylist.size()) {
+                        if (!filteredArraylist.get(i).isEsFP() && !filteredArraylist.get(i).isEsUni() && !filteredArraylist.get(i).isEsBatx()) {
+                            filteredArraylist.remove(filteredArraylist.get(i));
+                        }else{
+                            i++;
                         }
                     }
                 } else if (estudis.equals(getActivity().getString(R.string.all))) {
                     //do nothing
                 } else if (estudis.equals(getActivity().getString(R.string.schoola))) {
-                    for (CentreEscolar centreEscolar : filteredArraylist) {
-                        if (centreEscolar.isEsFP() || centreEscolar.isEsUni() || centreEscolar.isEsBatx()) {
-                            filteredArraylist.remove(centreEscolar);
+
+                    int i = 0;
+                    while( i < filteredArraylist.size()){
+                        if (!filteredArraylist.get(i).isEsPrimaria() && !filteredArraylist.get(i).isEsInfantil() && !filteredArraylist.get(i).isEsESO()) {
+                            filteredArraylist.remove(filteredArraylist.get(i));
+                        }else{
+                            i++;
                         }
                     }
                 }
@@ -57,6 +67,7 @@ public class ListViewFragment extends Fragment{
     }
 
     public void setFilteredListView(int option){ //0 = Barcelona,etc.
+        currentOption = option;
         if(cityAllArrayList != null && options.size() != 0){
             if(cityAllArrayList.size() != 0){
                 filteredArraylist.clear();
@@ -75,10 +86,6 @@ public class ListViewFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //keep this order for the 6 instructions under
-        options.add(getActivity().getString(R.string.barcelona));
-        options.add(getActivity().getString(R.string.girona));
-        options.add(getActivity().getString(R.string.lleida));
-        options.add(getActivity().getString(R.string.tarragona));
     }
 
     @Nullable
@@ -94,6 +101,12 @@ public class ListViewFragment extends Fragment{
 
         listView.setOnTouchListener(adapter);
 
+        options.add(getString(R.string.barcelona));
+        options.add(getString(R.string.girona));
+        options.add(getString(R.string.lleida));
+        options.add(getString(R.string.tarragona));
+
+        setFilteredListView(currentOption);
 
         return view;
     }
