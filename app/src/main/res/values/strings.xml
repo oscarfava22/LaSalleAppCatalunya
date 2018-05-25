@@ -46,6 +46,13 @@
     <string name="school_address_hint">Dirección de la escuela</string>
     <string name="title_provincia">Provincia de la escuela</string>
 
+    <string name="errorEmpty">Can\'t leave this field in blank!</string>
+    <string name="errorTitle"> ERROR!</string>
+    <string name="errorCourses">You must select some courses</string>
+    <string name="errorAdd">There was an error adding the school.</string>
+    <string name="successfulInsertion">School added succesfully</string>
+    <string name="loading">Loading...</string>
+
     <string-array name="provincies_array">
         <item>Barcelona</item>
         <item>Girona</item>

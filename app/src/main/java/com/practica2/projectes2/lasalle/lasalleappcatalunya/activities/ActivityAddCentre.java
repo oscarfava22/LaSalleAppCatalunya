@@ -69,15 +69,15 @@ public class ActivityAddCentre extends AppCompatActivity {
 
         if(tietSchoolName.getText().length() == 0){
             error = true;
-            tietSchoolName.setError("Hardcoded");
+            tietSchoolName.setError(getString(R.string.errorEmpty));
         }
         if(tietSchoolAddress.getText().length() == 0){
             error = true;
-            tietSchoolName.setError("Hardcoded");
+            tietSchoolName.setError(getString(R.string.errorEmpty));
         }
         if(tietDescription.getText().length() == 0){
             error = true;
-            tietSchoolName.setError("Hardcoded");
+            tietSchoolName.setError(getString(R.string.errorEmpty));
         }
         if(!cbUni.isChecked() && !cbFP.isChecked() && !cbBatx.isChecked() && !cbEso.isChecked() &&
                 !cbPrimaria.isChecked() && !cbInfantil.isChecked() &&!error){
@@ -88,8 +88,8 @@ public class ActivityAddCentre extends AppCompatActivity {
             } else {
                 builder = new AlertDialog.Builder(this);
             }
-            builder.setTitle("Error HARDCODED")
-                    .setMessage("HARDCODED Tria estudis")
+            builder.setTitle(getString(R.string.errorTitle))
+                    .setMessage(getString(R.string.errorCourses))
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -140,7 +140,7 @@ public class ActivityAddCentre extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.setMessage("HARDCODED");
+            progressDialog.setMessage(getString(R.string.loading));
             progressDialog.show();
         }
 
@@ -191,11 +191,11 @@ public class ActivityAddCentre extends AppCompatActivity {
             }
 
             if(done == 0){
-                Toast.makeText(this.context, "HARDCODED ERROR ADD",
+                Toast.makeText(this.context, getString(R.string.errorAdd),
                         Toast.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(this.context, "HARDCODED Inserit bé",
+                Toast.makeText(this.context, getString(R.string.successfulInsertion),
                         Toast.LENGTH_LONG).show();
             }
         }

@@ -34,11 +34,19 @@
     <string name="ADD">afegir</string>
 
     <string-array name="provincies_array">
-        <item>barcelona</item>
-        <item>girona</item>
-        <item>lleida</item>
-        <item>tarragona</item>
+        <item>Barcelona</item>
+        <item>Girona</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
     </string-array>
+
+    <string name="errorEmpty">No pot deixar buit aquest camp</string>
+    <string name="errorTitle"> ERROR!</string>
+    <string name="errorCourses">Has de seleccionar algún curs</string>
+
+    <string name="errorAdd">Error afegint l\'escola.</string>
+    <string name="successfulInsertion">Escola afegida correctament</string>
+    <string name="loading">Carregant...</string>
 
     <string name="tipus_estudis_hint">Tipus d\'estudis</string>
     <string name="button_create_school">CREA ESCOLA</string>
