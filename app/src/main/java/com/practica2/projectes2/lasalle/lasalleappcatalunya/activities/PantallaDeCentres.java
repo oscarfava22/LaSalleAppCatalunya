@@ -139,8 +139,12 @@ public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        asyncRequest.context = null;
-        asyncRequest = null;
+
+        if(asyncRequest != null) {
+            asyncRequest.context = null;
+            asyncRequest = null;
+        }
+
         super.onDestroy();
     }
 
@@ -168,16 +172,18 @@ public class PantallaDeCentres extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(SCHOOLS, escolesList);
         outState.putBoolean(FLAG, loadComplete);
-        android.support.v4.app.FragmentManager fr = getSupportFragmentManager();
-        FragmentTransaction transaction = fr.beginTransaction();
-        transaction.remove(escoles);
-        transaction.commit();
-        transaction = fr.beginTransaction();
-        transaction.remove(tots);
-        transaction.commit();
-        transaction = fr.beginTransaction();
-        transaction.remove(altres);
-        transaction.commit();
+        if(escoles != null && tots != null && altres != null){
+            android.support.v4.app.FragmentManager fr = getSupportFragmentManager();
+            FragmentTransaction transaction = fr.beginTransaction();
+            transaction.remove(escoles);
+            transaction.commit();
+            transaction = fr.beginTransaction();
+            transaction.remove(tots);
+            transaction.commit();
+            transaction = fr.beginTransaction();
+            transaction.remove(altres);
+            transaction.commit();
+        }
         super.onSaveInstanceState(outState);
     }
 

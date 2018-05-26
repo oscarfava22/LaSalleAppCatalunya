@@ -46,7 +46,7 @@ public class ListViewFragment extends Fragment {
     }
 
     public  void filterByType(){
-        if(filteredArraylist != null && options.size() != 0){
+        if(filteredArraylist != null && options.size() != 0 && getActivity() != null){
             if(filteredArraylist.size() != 0) {
                 if (estudis.equals(getActivity().getString(R.string.othrs))) {
                     int i = 0;
@@ -82,6 +82,8 @@ public class ListViewFragment extends Fragment {
             PantallaDeCentres activity = (PantallaDeCentres) context;
             cityAllArrayList = activity.getEscolesList();
             estudis = activity.getName(this);
+        }else{
+            return;
         }
 
         if(cityAllArrayList != null && options.size() != 0){
