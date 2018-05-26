@@ -57,7 +57,8 @@ public class PantallaDeCentres extends AppCompatActivity {
             asyncRequest = new AsyncRequest(this);
             asyncRequest.execute();
         } else {
-            createTabs();
+           createTabs();
+           createSpinner();
         }
     }
 
@@ -91,7 +92,10 @@ public class PantallaDeCentres extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        createSpinner();
+        if(escoles != null && tots != null && altres != null){
+            createTabs();
+            createSpinner();
+        }
     }
 
     @Override
