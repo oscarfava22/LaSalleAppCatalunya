@@ -112,6 +112,7 @@ public class PantallaDeCentres extends AppCompatActivity {
 
             case R.id.pantallaMapa:
                 intent = new Intent(this, MapActivity.class);
+                intent.putParcelableArrayListExtra("centers", escolesList);
                 startActivity(intent);
                 finish();
                 break;

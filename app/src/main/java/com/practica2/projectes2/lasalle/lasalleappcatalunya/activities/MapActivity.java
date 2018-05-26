@@ -50,7 +50,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private List<Marker> centersMarkers;
     private CentreEscolar lastCenterClicked;
     private BottomSheetBehavior sheetBehavior;
-    private SchoolsRepository schoolsRepo;
     private int bottomSheetState;
     private boolean firstTime;
     private boolean requestShowing;
@@ -60,8 +59,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
-        schoolsRepo = new SchoolsAPI(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,6 +92,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+
+        centers = getIntent().getParcelableArrayListExtra("centers");
 
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
@@ -141,7 +140,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 break;
             case R.id.pantallaLlista_map:
                 intent = new Intent(this, PantallaDeCentres.class);
-                intent.putParcelableArrayListExtra("centers", centers);
                 startActivity(intent);
                 finish();
                 break;
@@ -149,28 +147,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return false;
         }
         return true;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-       // if (asyncRequest != null) asyncRequest.cancel(true);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-      //  if (asyncRequest != null) {
-      //      asyncRequest.cancelDialog();
-       //     asyncRequest.cancel(true);
-        //}
-    }
-
-    @Override
-    protected void onDestroy() {
-      //  asyncRequest.context = null;
-      //  asyncRequest = null;
-        super.onDestroy();
     }
 
     @Override
@@ -220,10 +196,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng catalunya = new LatLng(41.3149, 2.096116);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(catalunya, 7.0f);
         googleMap.moveCamera(cameraUpdate);
-
-        //Sol·licitar centres al Web Service.
-    //    asyncRequest = new AsyncRequest(this);
-      //  asyncRequest.execute();
 
     }
 

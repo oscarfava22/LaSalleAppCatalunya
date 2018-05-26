@@ -43,6 +43,7 @@ public class ListViewFragment extends Fragment {
     public void setDataArray(ArrayList<CentreEscolar> cityArrayList, String estudis) {
         this.cityAllArrayList = cityArrayList;
         this.estudis = estudis;
+
     }
 
     public  void filterByType(){
