@@ -37,7 +37,6 @@ public class PantallaDeCentres extends AppCompatActivity {
     private ListViewFragment escoles;
     private ListViewFragment altres;
     private Spinner spinner;
-    private ArrayList<CentreEscolar> escolesList;
     private static final String SCHOOLS = "schoolKey";
     private static final String FLAG = "flag";
     private SchoolsRepository schoolsRepo;
@@ -50,16 +49,11 @@ public class PantallaDeCentres extends AppCompatActivity {
         setTitle(null);
         setContentView(R.layout.activity_pantalla_de_centres);
         createToolbar();
-        if(savedInstanceState == null){
-            escolesList = new ArrayList<>();
-        }
         schoolsRepo = new SchoolsAPI(this);
         if(savedInstanceState != null){
             loadComplete = savedInstanceState.getBoolean(FLAG);
-            this.escolesList = savedInstanceState.getParcelableArrayList(SCHOOLS);
         }
-        if(!loadComplete && escolesList != null){
-            escolesList = new ArrayList<>();
+        if(!loadComplete && CentersManager.getInstance().getCenters() == null){
             asyncRequest = new AsyncRequest(this);
             asyncRequest.execute();
         } else {
@@ -83,7 +77,7 @@ public class PantallaDeCentres extends AppCompatActivity {
     public void createSpinner(){
         spinner =  findViewById(R.id.spinner);
 
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(tots,escoles,altres,escolesList);
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(tots,escoles,altres,(ArrayList<CentreEscolar>) CentersManager.getInstance().getCenters());
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.provincies_array, android.R.layout.simple_spinner_item);
@@ -171,7 +165,6 @@ public class PantallaDeCentres extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(SCHOOLS, escolesList);
         outState.putBoolean(FLAG, loadComplete);
         if(escoles != null && tots != null && altres != null){
             android.support.v4.app.FragmentManager fr = getSupportFragmentManager();
@@ -190,7 +183,7 @@ public class PantallaDeCentres extends AppCompatActivity {
 
 
     public ArrayList<CentreEscolar> getEscolesList() {
-        return escolesList;
+        return (ArrayList<CentreEscolar>) CentersManager.getInstance().getCenters();
     }
 
     public String getName(ListViewFragment actual){
@@ -234,9 +227,8 @@ public class PantallaDeCentres extends AppCompatActivity {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            escolesList = aList;
-            if (escolesList != null) {
-                CentersManager.getInstance().setCenters(escolesList);
+            if (aList != null) {
+                CentersManager.getInstance().setCenters(aList);
                 createTabs();
                 createSpinner();
                 loadComplete = true;
