@@ -8,12 +8,12 @@
     <string name="username">username</string>
     <string name="realName">first name</string>
     <string name="surname">surname</string>
-    <string name="email">Correo Electronico</string>
+    <string name="email">email</string>
 
     <string name="password">password</string>
     <string name="confirmPassword">Confirm password</string>
-    <string name="register">register</string>
-    <string name="errorEmail">please,write your email correctly</string>
+    <string name="register">Register</string>
+    <string name="errorEmail">Please,write your email correctly</string>
 
     <string name="errorName">write your name</string>
     <string name="errorSurname">write your surname correctly</string>
@@ -23,7 +23,7 @@
     <string name="errorUsername">write your name correctly</string>
     <string name="loginAdmin">Login for administrators</string>
 
-    <string name="usernameOrEmail">username or email de usuario o Email</string>
+    <string name="usernameOrEmail">username or email</string>
     <string name="login">login</string>
 
     <string name="or">o</string>
@@ -32,29 +32,29 @@
     <string name="loginGoogle">LOGIN WITH GOOGLE</string>
     <string name="facebook_app_id">195448987919270</string>
     <string name="fb_login_protocol_scheme">fb195448987919270</string>
-    <string name="orderASC">order ascedent</string>
+    <string name="orderASC">ascedent order</string>
     <string name="logout">logout</string>
     <string name="TitleDialogDelete">Would you like to delete the center?</string>
     <string name="TitleDialogInsert">Would you like to add a new center?</string>
     <string name="AcceptToDelete">Delete</string>
     <string name="Delete">Delete</string>
     <string name="Cancel">Cancel</string>
-    <string name="title_activity_main">principal screen</string>
-    <string name="deleteSure">Are you sure you wamnt delete the center?</string>
+    <string name="title_activity_main">Principal screen</string>
+    <string name="deleteSure">Are you sure you want to delete the center?</string>
 
-    <string name="nom_escola">school\'s name</string>
-    <string name="titol_descripcio">Descripción</string>
+    <string name="nom_escola">School\'s name</string>
+    <string name="titol_descripcio">Description</string>
     <string name="title_add_new_centre">Add a new school</string>
-    <string name="school_name_hint">school\'s name</string>
-    <string name="school_address_hint">schol\'s adress</string>
-    <string name="title_provincia">school\'s province</string>
+    <string name="school_name_hint">School\'s name</string>
+    <string name="school_address_hint">Schol\'s address</string>
+    <string name="title_provincia">School\'s province</string>
 
 
-    <string name="errorEmpty">Can\'t leave this field in blank!</string>
+    <string name="errorEmpty">Can\'t leave this field in blank</string>
     <string name="errorTitle"> ERROR!</string>
-    <string name="errorCourses">You must select some courses</string>
+    <string name="errorCourses">You should select any course</string>
     <string name="errorAdd">There was an error adding the school.</string>
-    <string name="successfulInsertion">School added succesfully</string>
+    <string name="successfulInsertion">School added successfully</string>
     <string name="loading">Loading...</string>
 
     <string-array name="provincies_array">
@@ -81,12 +81,12 @@
 
     <string name="ADD">add</string>
 
-    <string name="tipus_estudis_hint">Tipo de estudios</string>
-    <string name="button_create_school">CREAR ESCUELA</string>
+    <string name="tipus_estudis_hint">Type of studies</string>
+    <string name="button_create_school">CREATE A SCHOOL</string>
 
      <string name="login_error">Incorrect username or password.</string>
     <string name="cancel_error">Login canceled.</string>
-    <string name="login_dialog_error">Something failed at the start of session. Please, try again.</string>
+    <string name="login_dialog_error">Something failed at the start of this session. Please, try again.</string>
     <string name="register_error">This username already exists. Please, choose another one.</string>
     <string name="title_activity_map">Map</string>
 
@@ -112,6 +112,5 @@
     <string name="infantil">infantile</string>
     <string name="primaria">primary</string>
     <string name="wait">Loading information. Please wait.</string>
-
 
 </resources>

@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnTouch;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentersManager;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,14 +71,7 @@ public class CreateNewCenter extends AppCompatActivity {
 
 
         if(savedInstanceState == null) {
-            data = new ArrayList<>(); //no tasks at first
-            CentreEscolar centreEscolar = new CentreEscolar(); //es crea per defecte
-            centreEscolar.setAdresaEscola("Carrer martin");
-            centreEscolar.setEsBatx(true);
-            centreEscolar.setNomEscola("Montserrat Roig");
-            centreEscolar.setEsESO(true);
-            centreEscolar.setDescripcio("Descripcio test montse roig");
-            data.add(centreEscolar);
+            data = (ArrayList<CentreEscolar>) CentersManager.getInstance().getCenters(); //no tasks at first
             ListView listView = findViewById(R.id.listview);
             adapter = new MyListViewAdapterWithOnTouch(data, this, toolbar, listView);
             listView.setAdapter(adapter);
@@ -121,7 +115,6 @@ public class CreateNewCenter extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("key", data);
         outState.putBoolean("keyTwo", orderButtonClicked);
         super.onSaveInstanceState(outState);
     }
@@ -129,7 +122,7 @@ public class CreateNewCenter extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        data = savedInstanceState.getParcelableArrayList("key");
+        data = (ArrayList<CentreEscolar>) CentersManager.getInstance().getCenters();
         orderButtonClicked = savedInstanceState.getBoolean("keyTwo");
 
         ListView listView = findViewById(R.id.listview);
