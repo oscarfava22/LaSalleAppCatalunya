@@ -191,9 +191,8 @@ public class ActivityAddCentre extends AppCompatActivity {
             }
 
             if(done == 0){
-                /*Toast.makeText(this.context, getString(R.string.errorAdd),
-                        Toast.LENGTH_LONG).show();*/
-                //TODO: Mostrar dialog a lallista
+                Toast.makeText(this.context, getString(R.string.errorAdd),
+                        Toast.LENGTH_LONG).show();
             }
             else{
                 Toast.makeText(this.context, getString(R.string.successfulInsertion),

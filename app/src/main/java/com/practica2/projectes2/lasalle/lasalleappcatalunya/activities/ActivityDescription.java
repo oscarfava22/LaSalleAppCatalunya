@@ -20,7 +20,7 @@ public class ActivityDescription extends AppCompatActivity {
         setContentView(R.layout.activity_description);
 
         Intent intent = getIntent();
-        CentreEscolar centreEscolar = intent.getExtras().getParcelable("lastCenterClicked");
+        final CentreEscolar centreEscolar = intent.getExtras().getParcelable("lastCenterClicked");
 
         TextView nomEscola = (TextView) findViewById(R.id.text_view_nom_escola_activityDescription);
         nomEscola.setText(centreEscolar.getNomEscola());
@@ -61,8 +61,9 @@ public class ActivityDescription extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-
+               Intent intentCapAMap = new Intent(ActivityDescription.this, MapActivity.class);
+               intentCapAMap.putExtra("centre", centreEscolar);
+               startActivity(intentCapAMap);
             }
         });
 
