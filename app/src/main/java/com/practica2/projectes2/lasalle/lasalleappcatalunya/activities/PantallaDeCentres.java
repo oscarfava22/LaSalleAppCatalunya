@@ -24,6 +24,7 @@ import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.SpinnerAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.TabAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.fragment.ListViewFragment;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentersManager;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
@@ -112,7 +113,6 @@ public class PantallaDeCentres extends AppCompatActivity {
 
             case R.id.pantallaMapa:
                 intent = new Intent(this, MapActivity.class);
-                intent.putParcelableArrayListExtra("centers", escolesList);
                 startActivity(intent);
                 finish();
                 break;
@@ -236,9 +236,7 @@ public class PantallaDeCentres extends AppCompatActivity {
             }
             escolesList = aList;
             if (escolesList != null) {
-                for (int i = 0; i < escolesList.size(); i++) {
-                    new AsyncCoordinatesRequest(escolesList.get(i), i).execute();
-                }
+                CentersManager.getInstance().setCenters(escolesList);
                 createTabs();
                 createSpinner();
                 loadComplete = true;

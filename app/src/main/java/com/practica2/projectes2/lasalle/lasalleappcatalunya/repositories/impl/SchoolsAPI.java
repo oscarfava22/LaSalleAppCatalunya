@@ -68,6 +68,7 @@ public class SchoolsAPI implements SchoolsRepository {
                 centreEscolar.setEsInfantil(search.getJSONObject(i).getInt(INFANTIL) != 0);
                 centreEscolar.setNomEscola(search.getJSONObject(i).getString(NOMESCOLA));
                 centreEscolar.setProvincia(search.getJSONObject(i).getString(PROVINCIA));
+                establirLocation(centreEscolar);
                 list.add(centreEscolar);
             }
 

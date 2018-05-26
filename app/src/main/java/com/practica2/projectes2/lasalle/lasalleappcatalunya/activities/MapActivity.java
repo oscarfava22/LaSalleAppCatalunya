@@ -35,6 +35,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentersManager;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
@@ -46,7 +47,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private static final int PERMISSIONS_REQUEST_ACCESS_LOCATION = 12345;
     private GoogleMap mMap;
-    private ArrayList<CentreEscolar> centers;
+    private List<CentreEscolar> centers;
     private List<Marker> centersMarkers;
     private CentreEscolar lastCenterClicked;
     private BottomSheetBehavior sheetBehavior;
@@ -93,7 +94,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-        centers = getIntent().getParcelableArrayListExtra("centers");
+        centers = CentersManager.getInstance().getCenters();
 
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
