@@ -1,5 +1,6 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 

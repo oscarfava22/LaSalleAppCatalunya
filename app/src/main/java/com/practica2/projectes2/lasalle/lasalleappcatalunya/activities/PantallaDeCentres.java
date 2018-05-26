@@ -1,11 +1,13 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.SpinnerAdapter;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.TabAdapter;
@@ -29,7 +28,6 @@ import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PantallaDeCentres extends AppCompatActivity {
@@ -42,7 +40,6 @@ public class PantallaDeCentres extends AppCompatActivity {
     private static final String SCHOOLS = "schoolKey";
     private static final String FLAG = "flag";
     private SchoolsRepository schoolsRepo;
-    private static final String CENTERS = "centers";
     private AsyncRequest asyncRequest;
     private boolean loadComplete = false;
 
@@ -66,7 +63,6 @@ public class PantallaDeCentres extends AppCompatActivity {
             asyncRequest.execute();
         } else {
             createTabs();
-            createSpinner();
         }
     }
 
@@ -95,6 +91,12 @@ public class PantallaDeCentres extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(spinnerAdapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        createSpinner();
     }
 
     @Override
@@ -151,10 +153,6 @@ public class PantallaDeCentres extends AppCompatActivity {
         altres = new ListViewFragment();
         escoles = new ListViewFragment();
 
-        tots.setDataArray(escolesList, getString(R.string.all));
-        escoles.setDataArray(escolesList,getString(R.string.schoola));
-        altres.setDataArray(escolesList,getString(R.string.othrs));
-
         //creating all the entries
         ArrayList<TabAdapter.TabEntry> entries = new ArrayList<>();
         entries.add(new TabAdapter.TabEntry(tots, getString(R.string.All)));
@@ -170,7 +168,34 @@ public class PantallaDeCentres extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(SCHOOLS, escolesList);
         outState.putBoolean(FLAG, loadComplete);
+        android.support.v4.app.FragmentManager fr = getSupportFragmentManager();
+        FragmentTransaction transaction = fr.beginTransaction();
+        transaction.remove(escoles);
+        transaction.commit();
+        transaction = fr.beginTransaction();
+        transaction.remove(tots);
+        transaction.commit();
+        transaction = fr.beginTransaction();
+        transaction.remove(altres);
+        transaction.commit();
         super.onSaveInstanceState(outState);
+    }
+
+
+    public ArrayList<CentreEscolar> getEscolesList() {
+        return escolesList;
+    }
+
+    public String getName(ListViewFragment actual){
+        if(actual == tots){
+            return getString(R.string.all);
+        }else if(actual == escoles){
+            return getString(R.string.schoola);
+        }else if(actual == altres){
+            return getString(R.string.othrs);
+        }else{
+            return "";
+        }
     }
 
     private class AsyncRequest extends AsyncTask<String, Void, ArrayList<CentreEscolar>> {
