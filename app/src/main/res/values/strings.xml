@@ -58,16 +58,16 @@
     <string name="loading">Loading...</string>
 
     <string-array name="provincies_array">
-        <item>barcelona</item>
-        <item>girona</item>
-        <item>lleida</item>
-        <item>tarragona</item>
+        <item>Barcelona</item>
+        <item>Girona</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
     </string-array>
 
-    <string name="barcelona">barcelona</string>
-    <string name="girona">girona</string>
-    <string name="lleida">lleida</string>
-    <string name="tarragona">tarragona</string>
+    <string name="barcelona">Barcelona</string>
+    <string name="girona">Girona</string>
+    <string name="lleida">Lleida</string>
+    <string name="tarragona">Tarragona</string>
 
     <string-array name="school_groups">
         <item>All</item>

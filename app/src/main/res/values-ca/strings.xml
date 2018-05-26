@@ -53,11 +53,16 @@
     <string name="ADD">afegir</string>
 
     <string-array name="provincies_array">
-        <item>barcelona</item>
-        <item>girona</item>
-        <item>lleida</item>
-        <item>tarragona</item>
+        <item>Barcelona</item>
+        <item>Girona</item>
+        <item>Lleida</item>
+        <item>Tarragona</item>
     </string-array>
+
+    <string name="barcelona">Barcelona</string>
+    <string name="girona">Girona</string>
+    <string name="lleida">Lleida</string>
+    <string name="tarragona">Tarragona</string>
 
     <string name="errorEmpty">No pot deixar buit aquest camp</string>
     <string name="errorTitle"> ERROR!</string>

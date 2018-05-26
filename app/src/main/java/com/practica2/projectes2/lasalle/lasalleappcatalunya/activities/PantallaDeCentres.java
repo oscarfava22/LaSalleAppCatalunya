@@ -58,7 +58,7 @@ public class PantallaDeCentres extends AppCompatActivity {
             loadComplete = savedInstanceState.getBoolean(FLAG);
             this.escolesList = savedInstanceState.getParcelableArrayList(SCHOOLS);
         }
-        if(!loadComplete){
+        if(!loadComplete && escolesList != null){
             escolesList = new ArrayList<>();
             asyncRequest = new AsyncRequest(this);
             asyncRequest.execute();
