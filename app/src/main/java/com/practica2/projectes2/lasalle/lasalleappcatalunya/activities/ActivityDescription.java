@@ -63,7 +63,8 @@ public class ActivityDescription extends AppCompatActivity {
             public void onClick(View view) {
                Intent intentCapAMap = new Intent(ActivityDescription.this, MapActivity.class);
                intentCapAMap.putExtra("centre", centreEscolar);
-               startActivity(intentCapAMap);
+               startActivity(intentCapAMap
+               );
             }
         });
 

@@ -10,14 +10,14 @@
     <string name="surname">Segon cognom</string>
     <string name="email">Correu Electrònic</string>
 
-    <string name="password">Contrassenya</string>
-    <string name="confirmPassword">Confirmar Contrassenya</string>
+    <string name="password">Contrasenya</string>
+    <string name="confirmPassword">Confirmar Contrasenya</string>
     <string name="register">Registrar-se</string>
-    <string name="errorEmail">Escriu el email correctament,si us plau</string>
+    <string name="errorEmail">Escriu l\'email correctament, si us plau</string>
 
     <string name="errorName">Escriu el teu nom</string>
     <string name="errorSurname">Escriu el teu cognom</string>
-    <string name="errorPass">Escriu la teva contrassenya</string>
+    <string name="errorPass">Escriu la teva contrasenya</string>
 
     <string name="errorConfirmPass">La contrasenya no coincideix</string>
     <string name="errorUsername">Escriu el nom d\'usuari</string>
@@ -28,20 +28,20 @@
 
     <string name="or">o</string>
 
-    <string name="loginFacebook">INICIAR SESIÓ AMB FACEBOOK</string>
-    <string name="loginTwitter">INICIAR SESIÓ AMB TWITTER</string>
-    <string name="loginGoogle">INICIAR SESIÓ AMB GOOGLE</string>
+    <string name="loginFacebook">INICIAR SESSIÓ AMB FACEBOOK</string>
+    <string name="loginTwitter">INICIAR SESSIÓ AMB TWITTER</string>
+    <string name="loginGoogle">INICIAR SESSIÓ AMB GOOGLE</string>
     <string name="facebook_app_id">195448987919270</string>
     <string name="fb_login_protocol_scheme">fb195448987919270</string>
-    <string name="orderASC">ordenar alfabeticament</string>
-    <string name="logout">sortir</string>
-    <string name="TitleDialogDelete">Vols borrar el centre?</string>
+    <string name="orderASC">Ordenar alfabèticament</string>
+    <string name="logout">Sortir</string>
+    <string name="TitleDialogDelete">Vols esborrar el centre?</string>
     <string name="TitleDialogInsert">Vols afegir un nou centre?</string>
-    <string name="AcceptToDelete">Borrar </string>
-    <string name="Delete">Borrar</string>
-    <string name="Cancel">Cancelar</string>
+    <string name="AcceptToDelete">Esborrar </string>
+    <string name="Delete">Esborrar</string>
+    <string name="Cancel">Cancel·lar</string>
     <string name="title_activity_main">Pantalla Principal</string>
-    <string name="deleteSure">Segur que vols borrar el centre?</string>
+    <string name="deleteSure">Segur que vols esborrar el centre?</string>
 
     <string name="nom_escola">Nom escola</string>
     <string name="titol_descripcio">Descripció</string>
@@ -64,9 +64,9 @@
     <string name="lleida">Lleida</string>
     <string name="tarragona">Tarragona</string>
 
-    <string name="errorEmpty">No pot deixar buit aquest camp</string>
+    <string name="errorEmpty">No pots deixar buit aquest camp</string>
     <string name="errorTitle"> ERROR!</string>
-    <string name="errorCourses">Has de seleccionar algún curs</string>
+    <string name="errorCourses">Has de seleccionar algun curs</string>
 
     <string name="errorAdd">Error afegint l\'escola.</string>
     <string name="successfulInsertion">Escola afegida correctament</string>
@@ -77,34 +77,34 @@
 
 
     <string-array name="school_groups">
-        <item>tots</item>
-        <item>escoles</item>
-        <item>altres</item>
+        <item>Tots</item>
+        <item>Escoles</item>
+        <item>Altres</item>
     </string-array>
 
 
-    <string name="all">tots</string>
-    <string name="schoola">escoles</string>
-    <string name="othrs">altres</string>
+    <string name="all">Tots</string>
+    <string name="schoola">Escoles</string>
+    <string name="othrs">Altres</string>
 
-    <string name="login_error">Nom d\'usuari o contrassenya incorrecta</string>
-    <string name="cancel_error">Acces cancelat</string>
-    <string name="login_dialog_error">Alguna cosa ha fallat al començar la sessió. Siusplau, torna a intentar-ho</string>
-    <string name="register_error">Aquest usuari ja existeix.Siusplau, tria un altre.</string>
+    <string name="login_error">Nom d\'usuari o contrasenya incorrecta</string>
+    <string name="cancel_error">Acces cancel·lat</string>
+    <string name="login_dialog_error">Alguna cosa ha fallat al començar la sessió. Si us plau, torna a intentar-ho</string>
+    <string name="register_error">Aquest usuari ja existeix. Si us plau, tria un altre.</string>
     <string name="title_activity_map">Mapa</string>
 
     <string name="permission_denied">Permisos denegats</string>
-    <string name="permission_denied_explanation">Sense permisos l\'app no pot accedir a la teva localització. Estas segur que vols denegar el permís?</string>
+    <string name="permission_denied_explanation">Sense permisos l\'app no pot accedir a la teva localització. Estàs segur que vols denegar el permís?</string>
     <string name="sure">Estic segur</string>
-    <string name="retry">tornar a intentar</string>
+    <string name="retry">Tornar a intentar</string>
     <string name="acces_login">Autenticació</string>
-    <string name="show_list">mostrar llista</string>
-    <string name="provinces">Provincias</string>
-    <string name="show_map">mostrar mapa</string>
+    <string name="show_list">Mostrar llista</string>
+    <string name="provinces">Províncies</string>
+    <string name="show_map">Mostrar mapa</string>
 
 
-    <string name="Infantil">infantil</string>
-    <string name="Primaria">primaria</string>
+    <string name="Infantil">Infantil</string>
+    <string name="Primaria">Primària</string>
     <string name="Batxillerato">Batxillerat</string>
     <string name="ESO">ESO</string>
     <string name="FP">FP</string>
@@ -113,9 +113,9 @@
     <string name="uni">Universitat</string>
     <string name="batx">Batxillerat</string>
     <string name="eso">ESO</string>
-    <string name="infantil">Elementary</string>
-    <string name="primaria">Primary</string>
-    <string name="wait">Cargant informació. Siusplau, espera.</string>
+    <string name="infantil">Infatil</string>
+    <string name="primaria">Primària</string>
+    <string name="wait">Carregant informació. Si us plau, espera.</string>
 
 
 </resources>
