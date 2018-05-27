@@ -8,15 +8,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:src="@drawable/image_test"
+            android:src="@drawable/imatge_demo"
             android:id="@+id/image_view_activityDescription"
-            android:background="@color/colorTest"/>
+            android:background="@color/colorPrimary" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
