@@ -76,6 +76,8 @@ public class LoginAdminActivity extends AppCompatActivity {
 
         if (usersDB.logInSuccessful(userId, userPassword) || usersDB.logInSuccessfulByEmail(userId, userPassword)) {
 
+            logInId.setText(null);
+            logInPassword.setText(null);
             Intent intent = new Intent(this, CreateNewCenter.class);
             startActivity(intent);
 
