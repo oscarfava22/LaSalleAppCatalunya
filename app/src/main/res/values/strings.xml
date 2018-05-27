@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LaSalleCatalunyaApp</string>
+    <string name="app_name">SalleCatApp</string>
     <string name="All">All</string>
     <string name="IPE">SCHOOLS</string>
     <string name="BFU">OTHERS</string>
