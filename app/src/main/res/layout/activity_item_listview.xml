@@ -2,19 +2,25 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="16dp">
+    android:layout_marginEnd="16dp"
+    android:weightSum="100">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="70"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp">
 
         <TextView
             android:id="@+id/nom_escola_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/adresa_escola_item"
@@ -30,9 +36,12 @@
 
     <ImageView
         android:id="@+id/imatge_escola_item"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/logo_la_salle_catalunya" />
+        android:background="@drawable/logo_la_salle_catalunya"
+        android:layout_weight="30"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>
