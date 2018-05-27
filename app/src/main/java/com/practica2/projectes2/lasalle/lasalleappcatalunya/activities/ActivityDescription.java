@@ -1,10 +1,9 @@
 package com.practica2.projectes2.lasalle.lasalleappcatalunya.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,13 +21,13 @@ public class ActivityDescription extends AppCompatActivity {
         Intent intent = getIntent();
         final CentreEscolar centreEscolar = intent.getExtras().getParcelable("lastCenterClicked");
 
-        TextView nomEscola = (TextView) findViewById(R.id.text_view_nom_escola_activityDescription);
+        TextView nomEscola = findViewById(R.id.text_view_nom_escola_activityDescription);
         nomEscola.setText(centreEscolar.getNomEscola());
 
-        TextView address = (TextView) findViewById(R.id.text_view_adreça_activityDescription);
+        TextView address = findViewById(R.id.text_view_adreça_activityDescription);
         address.setText(centreEscolar.getAdresaEscola());
 
-        TextView tipusestudisLlista = (TextView) findViewById(R.id.text_view_tipus_estudis_activityDescription);
+        TextView tipusestudisLlista = findViewById(R.id.text_view_tipus_estudis_activityDescription);
         String llistat = "";
         if(centreEscolar.isEsUni()){
             llistat = llistat.concat(getString(R.string.uni)).concat(System.lineSeparator());

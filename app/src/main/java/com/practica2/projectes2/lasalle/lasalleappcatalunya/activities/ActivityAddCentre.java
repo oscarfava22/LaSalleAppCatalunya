@@ -5,27 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.SchoolsRepository;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.SchoolsAPI;
-
-import java.util.ArrayList;
 
 public class ActivityAddCentre extends AppCompatActivity {
 
@@ -54,18 +47,18 @@ public class ActivityAddCentre extends AppCompatActivity {
 
     public void onClickAdd(View view){
         boolean error = false;
-        TextInputEditText tietSchoolName = (TextInputEditText) findViewById(R.id.tiet_activity_add_center_school_name);
-        TextInputEditText tietSchoolAddress = (TextInputEditText) findViewById(R.id.tiet_activity_add_center_school_address);
-        TextInputEditText tietDescription = (TextInputEditText) findViewById(R.id.tiet_activity_add_center_school_description);
+        TextInputEditText tietSchoolName = findViewById(R.id.tiet_activity_add_center_school_name);
+        TextInputEditText tietSchoolAddress = findViewById(R.id.tiet_activity_add_center_school_address);
+        TextInputEditText tietDescription = findViewById(R.id.tiet_activity_add_center_school_description);
 
-        CheckBox cbUni = (CheckBox) findViewById((R.id.cb_uni));
-        CheckBox cbFP = (CheckBox) findViewById((R.id.cb_FP));
-        CheckBox cbBatx = (CheckBox) findViewById((R.id.cb_batx));
-        CheckBox cbEso = (CheckBox) findViewById((R.id.cb_eso));
-        CheckBox cbPrimaria = (CheckBox) findViewById((R.id.cb_primaria));
-        CheckBox cbInfantil = (CheckBox) findViewById((R.id.cb_infantil));
+        CheckBox cbUni = findViewById((R.id.cb_uni));
+        CheckBox cbFP = findViewById((R.id.cb_FP));
+        CheckBox cbBatx = findViewById((R.id.cb_batx));
+        CheckBox cbEso = findViewById((R.id.cb_eso));
+        CheckBox cbPrimaria = findViewById((R.id.cb_primaria));
+        CheckBox cbInfantil = findViewById((R.id.cb_infantil));
 
-        Spinner spProvincia = (Spinner) findViewById((R.id.spinner_activity_add_center_provincia));
+        Spinner spProvincia = findViewById((R.id.spinner_activity_add_center_provincia));
 
         if(tietSchoolName.getText().length() == 0){
             error = true;

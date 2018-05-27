@@ -64,10 +64,10 @@
         <item>Tarragona</item>
     </string-array>
 
-    <string name="barcelona">Barcelona</string>
-    <string name="girona">Girona</string>
-    <string name="lleida">Lleida</string>
-    <string name="tarragona">Tarragona</string>
+    <string name="barcelona">barcelona</string>
+    <string name="girona">girona</string>
+    <string name="lleida">lleida</string>
+    <string name="tarragona">tarragona</string>
 
     <string-array name="school_groups">
         <item>All</item>

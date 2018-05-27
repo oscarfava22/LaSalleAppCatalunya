@@ -52,18 +52,6 @@
 
     <string name="ADD">afegir</string>
 
-    <string-array name="provincies_array">
-        <item>Barcelona</item>
-        <item>Girona</item>
-        <item>Lleida</item>
-        <item>Tarragona</item>
-    </string-array>
-
-    <string name="barcelona">Barcelona</string>
-    <string name="girona">Girona</string>
-    <string name="lleida">Lleida</string>
-    <string name="tarragona">Tarragona</string>
-
     <string name="errorEmpty">No pots deixar buit aquest camp</string>
     <string name="errorTitle"> ERROR!</string>
     <string name="errorCourses">Has de seleccionar algun curs</string>

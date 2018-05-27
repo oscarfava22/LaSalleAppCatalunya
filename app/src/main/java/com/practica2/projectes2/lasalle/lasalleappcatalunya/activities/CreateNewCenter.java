@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.support.design.widget.FloatingActionButton;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -17,6 +15,7 @@ import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.adapters.MyListViewAdapterWithOnTouch;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentersManager;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.CentreEscolar;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

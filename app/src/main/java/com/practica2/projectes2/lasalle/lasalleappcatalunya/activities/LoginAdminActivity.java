@@ -5,24 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.practica2.projectes2.lasalle.lasalleappcatalunya.model.User;
-import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.UsersDB;
 import com.practica2.projectes2.lasalle.lasalleappcatalunya.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.practica2.projectes2.lasalle.lasalleappcatalunya.repositories.impl.UsersDB;
 
 
 public class LoginAdminActivity extends AppCompatActivity {
